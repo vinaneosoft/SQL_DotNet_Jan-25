@@ -7,7 +7,7 @@ Select * from employees where city='Mumbai'
 Q. Show Employees living in city Satara
 Select * from employees where lower(trim(city))=lower('Satara')
 
-Q. Show employees having salary is 50000
+Q. Show employees having salary is not 50000
 
 select * from employees where salary != 50000;
 select * from employees where salary <> 50000;
@@ -72,5 +72,10 @@ Q. Show employees except ages  30 to 40
 select * from employees where age<30 or age>40; 
 select * from employees 
 where age not between 30 and 40;
+
+
+Note : following query works
+select first_name from employees
+where first_name > 'Gauresh'
 
 

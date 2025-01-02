@@ -1,0 +1,94 @@
+
+
+Q. Show employees having salary is not 50000
+
+select * from employees where salary NOT IN (50000);
+
+multiple or (= / !=) conditions on same column/ field : replace with IN / NOT IN
+
+Q. Show employees from Pune and satara
+select * from employees where city IN ('pune','satara')  
+select * from employees where lower(trim(city)) in ('pune' , 'satara')
+
+Q. Show employees from pune and satara having salary less than or equal to 50000
+select * from employees 
+    where lower(trim(city)) in ('pune', 'satara') and salary <= 50000
+
+Q. show employees with age 40 or 50 or 60
+select * from employees where age in (40,50,60);
+select * from employees
+where age=40 or age=50 or age=60
+
+Q. show employees with age other than 40 and 50 and 60
+select * from employees where age not in (40,50,60);
+select * from employees 
+where age!=40 and age!=50 and age!=60
+
+Q. show young employees from age 30 to 40
+select * from employees where age >= 30 and age <= 40
+select * from employees where age between 30 and 40
+
+Q. show young employees from age >30 to <40
+select * from employees where age > 30 and age < 40 /* dont replace it with between and */
+
+Q. Show employees not working in WD department
+select * from employees where DEPT_CODE not in 'WD';
+SELECT * FROM employees WHERE NOT ( dept_code = 'WD' );
+select * from employees where DEPT_CODE!='WD';
+
+
+Q. Show employees except ages  30 to 40
+select * from employees where age<30 or age>40; 
+select * from employees 
+where age not between 30 and 40;
+
+
+Q. Show employees not working in any department
+select * from employees where dept_code is null
+
+Q. Show employees must be working in department
+select * from employees where dept_code is not null
+
+Select * from employees where age is 40 /*it wont work*/
+
+Q. Show employees having no comission
+select * from employees where  commission is null
+
+Q. Show employees between 40 to 50 age having no commission
+Select * from employees where age between 40 and 50 and COMMISSION is null ;
+
+Q. select employees where last name not present
+select * from employees where last_name is null;
+    
+
+/*like % : 0 or more characters, _ : any one character wild character*/ 
+Q. Select employees whose first name starts with K / k
+select * from employees where first_name like 'K%' or first_name='k%'
+select first_name, last_name from employees where upper(first_name) like 'K%'
+select upper(first_name), last_name from employees where upper(first_name) like 'K%'
+
+Q. Select employees whose first name starts with Kish
+select * from employees where first_name like 'Kish%'
+select first_name, last_name from employees where upper(first_name) like 'KISH%'
+
+
+Q. Select employees whose first name ends with r
+SELECT * FROM employees WHERE first_name LIKE '%r';
+SELECT * FROM employees WHERE lower(first_name) LIKE '%r';
+
+
+Q. Select employees whose city contains letter 'la'
+select *from employees where lower(city) like '%la%'; /*example Latur, Solapur, Akola*/
+
+Q. Select employee with firstname atleast 2 or more characters long
+select *from employees where first_name like '__%';
+
+Q. Select employee with firstname starting with A and atleast 2 or more characters long
+select *from employees where upper(first_name) like 'A_%'; /*ex. Amar, amol, An, As,Ash*/
+
+Q. select employees whose first name has length exactly 4
+select *from employees where first_name like '____'
+select *from employees where length(first_name) =4
+
+
+
