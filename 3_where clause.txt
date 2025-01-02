@@ -13,3 +13,28 @@ select * from employees where salary != 50000;
 select * from employees where salary <> 50000;
 select * from employees where not (salary = 50000);
 select * from employees where salary NOT IN (50000);
+
+Q. Show employees from LD department having salary 40000
+select * from employees where dept_code='LD' and salary = 40000;
+
+Q. Show employees from LD department having salary 50000
+select * from employees where dept_code='LD' and salary = 50000;
+
+Q. Show employees from Pune and satara
+select * from employees where city = 'pune' or city = 'satara'
+select * from employees where lower(trim(city)) = 'pune' or lower(trim(city))  = 'satara'
+
+
+Q. Show employees from WD department or solapur city
+select * from employees where dept_code='WD' or lower(trim(city))='solapur';
+
+Q. Show employees from pune and satara having salary less than or equal to 50000
+select * from employees 
+    where (lower(trim(city)) = 'pune' or lower(trim(city))  = 'satara') 
+	and salary <= 50000
+
+multiple or conditions on same column/ field : replace with IN 
+
+Q. Show employees from Pune and satara
+select * from employees where city IN ('pune','satara')  
+select * from employees where lower(trim(city)) in ('pune' , 'satara')
