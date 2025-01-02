@@ -6,3 +6,8 @@ select d_name, d_role, d_code, d_budget from departments;
 
 Q. display department name with its role
 select d_name, d_role from departments;
+
+Q. put alias to above projection
+select d_name "department", d_role "department role" from departments;
+select d_name department, d_role "department role" from departments;
+select d_name as department, d_role as "department role" from departments; /*as is optional*/
