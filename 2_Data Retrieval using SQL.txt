@@ -1,0 +1,8 @@
+Q.  Display the values from all the rows in all the columns from departments. 
+select * from departments;
+
+Q. Display the values from all the rows in all the columns from departments. Column order must be custom 
+select d_name, d_role, d_code, d_budget from departments;
+
+Q. display department name with its role
+select d_name, d_role from departments;
