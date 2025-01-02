@@ -11,3 +11,33 @@ Q. put alias to above projection
 select d_name "department", d_role "department role" from departments;
 select d_name department, d_role "department role" from departments;
 select d_name as department, d_role as "department role" from departments; /*as is optional*/
+
+Q. To see the tables belonging to the current user account
+select * from  TAB
+
+Q. Show cities of employees
+select city from employees;
+
+Q. Show cities of employees. avoid repeatitions
+select distinct city from employees;
+
+Q. Show employees with their department codes
+select employees_id, FIRST_NAME, last_name, DEPT_CODE from employees
+
+
+Q. Show commissions taken by employees
+select distinct commission from employees;
+
+Q. show all possible queries with / without distinct keyword
+
+select distinct salary from employees; // 16 rows
+
+select distinct commission from employees; // 7 rows
+
+select distinct salary, commission from employees; // 25 rows
+
+select salary, commission from employees order by salary desc; // 28 rows
+
+
+Q. Show employees with their commission
+select  commission, employees_id from employees;
