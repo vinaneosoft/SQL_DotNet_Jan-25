@@ -1,0 +1,14 @@
+Q. if LD : salary+2000, if WD: salary+3000 rest : salary+4000
+
+select first_name, employees_id, dept_code,  salary, 
+CASE dept_code 
+when 'LD' then salary+2000
+when 'WD' then salary+3000
+ELSE salary+4000
+END  "Projected salary after Increment"
+from employees
+
+Q. LD : salary+2000, WD: salary+3000, HR : salary+1000  rest : salary+4000
+select first_name, employees_id, dept_code,  salary, 
+Decode ( dept_code, 'LD', salary+2000, 'WD', salary+3000, 'HR', salary+1000, salary+4000) "Projected Salary after Increment"
+from employees
