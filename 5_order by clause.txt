@@ -16,3 +16,25 @@ Q. display employees with their salary in descending order
 select employees_id
     from employees
     order by salary desc 
+
+Q. Show employees in ascending order of their department, and then in descending order of their salary
+
+select first_name, dept_code, salary
+from employees
+order by dept_code, salary desc
+
+Q. Show employees from same city in ascending order of their age
+
+select first_name, city, age
+from employees
+order by upper(trim(city)), age
+
+Q. Show older to younger employees in their department
+
+select * from employees order by  dept_code,age desc;
+
+Q. Show lower to higher department for same age employees
+
+select * from employees order by age, dept_code;
+
+
