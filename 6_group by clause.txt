@@ -103,3 +103,28 @@ select count(salary),dept_code, sum(salary) "Total Salary"
 from employees
 where dept_code!='LD'
 group by dept_code
+
+
+Q. Show  citi wise count of employees in every department
+
+select dept_code, initcap(trim(city)), count(employees_id)
+from employees
+group by dept_code, initcap(trim(city))
+order by dept_code
+
+
+Q. Show count of same age employees from same city in same department
+
+select dept_code, initcap(trim(city)), age, count(employees_id)
+from employees
+group by dept_code, initcap(trim(city)) , age
+order by dept_code,  initcap(trim(city))
+
+
+Q. Show age wise how many employees taking same commission
+select age, commission, count(employees_id)
+from employees
+group by age, commission
+order by age, count(employees_id) desc
+
+    
