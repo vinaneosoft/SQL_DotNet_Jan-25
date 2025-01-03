@@ -66,3 +66,40 @@ Q.below query will give you error bcz row count mismatch
 select dept_code, max(commission) higher_commission, employees_id /*5, 5, 28*/
 from employees
 group by  dept_code
+
+Q. count employees with same age among all employees in LD department
+ where clause must come before group by bcz it filters the rows before making a group
+
+select age, count(age) "count" from employees
+where dept_code='LD'
+group by age
+order by age
+
+Q. Show sum of salary departmentwise
+
+select count(salary),sum(salary), dept_code from employees group by dept_code;
+
+Q. Show sum of (salaries>50000) departmentwise
+select count(salary),dept_code, sum(salary) "Total Salary"
+from employees
+    where salary>50000
+group by dept_code
+
+Note : having selects the groups on condition so either use group function  or group by column for comparison
+/*whole table is one group*/
+select max(salary)
+    from employees  
+having max(salary)>50000
+
+    following will work
+select count(salary),dept_code, sum(salary) "Total Salary"
+from employees
+    where salary>50000
+group by dept_code
+having dept_code!='LD'
+
+    following will work
+select count(salary),dept_code, sum(salary) "Total Salary"
+from employees
+where dept_code!='LD'
+group by dept_code
