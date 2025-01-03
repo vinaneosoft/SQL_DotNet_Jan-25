@@ -37,4 +37,25 @@ Q. Show lower to higher department for same age employees
 
 select * from employees order by age, dept_code;
 
+select * from employees
+order by 3  /*column order inside table*/
+
+select first_name, age from employees
+order by 2 desc  /*column order inside projection (SELECT-list expression)*/
+
+
+below query will give you error
+select first_name, age from employees  
+order by 3 desc
+
+
+select first_name, age, dept_code from employees
+order by 3, 2 desc 
+
+select first_name, dept_code ,age from employees
+order by 2, 3 desc
+
+Q. Diplay employees from LD department in ascending order of their age
+
+select * from employees where dept_code='LD' order by age;
 

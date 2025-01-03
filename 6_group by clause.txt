@@ -1,0 +1,56 @@
+Q. Show max salary among all employees
+select max(salary) from employees 
+
+Q. Who is the employee who has max salary among all employees
+select first_name, salary from employees
+where salary=(
+    			select max(salary) from employees
+    		 )
+
+Q. Who has highest salary among all employees
+select first_name, salary
+from employees
+order by salary desc
+FETCH FIRST 1 ROWS ONLY
+
+select first_name, salary
+from employees
+order by salary desc
+FETCH FIRST ROW ONLY
+
+Q. Who has 2nd highest salary among all employees
+select first_name, salary
+from employees
+order by salary desc
+offset 1 rows
+FETCH FIRST ROW ONLY
+
+Q. Show top 3 higher salary employees 
+select first_name, salary
+from employees
+order by salary desc
+FETCH FIRST 3 ROWS ONLY
+
+FETCH FIRST ROW ONLY
+
+Q. Show top 3 higher salary employees  (unique salary)
+select first_name, salary
+from employees
+order by salary desc
+FETCH FIRST 3 ROWS with ties
+
+select first_name, salary
+from employees
+order by salary desc
+FETCH next 3 ROWS with ties   /*first and next substitute for each other*/
+
+Q. Who has lowest salary among all employees
+select first_name, salary
+from employees
+order by salary asc
+FETCH FIRST  ROW  only
+    
+select first_name, salary
+from employees
+order by salary asc
+FETCH FIRST  ROW with ties
