@@ -54,3 +54,10 @@ select first_name, salary
 from employees
 order by salary asc
 FETCH FIRST  ROW with ties
+
+
+Q. Show department wise highest commission of employee
+select dept_code, max(commission) higher_commission
+from employees
+group by  dept_code
+order by higher_commission
