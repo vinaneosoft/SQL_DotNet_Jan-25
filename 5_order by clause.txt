@@ -1,0 +1,18 @@
+Q. display employees with their salary in descending order
+
+select first_name,employees_id,dept_code,salary 
+    from employees 
+    order by salary desc 
+    
+below is ascending order query (asc is optional)
+
+select first_name,employees_id,dept_code,salary 
+    from employees 
+    order by salary 
+
+Q. display employees with their salary in descending order
+
+    We can omit order by column from projecton
+select employees_id
+    from employees
+    order by salary desc 

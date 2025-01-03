@@ -12,3 +12,16 @@ Q. LD : salary+2000, WD: salary+3000, HR : salary+1000  rest : salary+4000
 select first_name, employees_id, dept_code,  salary, 
 Decode ( dept_code, 'LD', salary+2000, 'WD', salary+3000, 'HR', salary+1000, salary+4000) "Projected Salary after Increment"
 from employees
+
+below query is invalid
+select *, city
+from employees e
+
+rule : after *  must be a from clause
+
+below queries are valid
+select e.*, city
+from employees e
+
+select employees.*, city
+from employees
