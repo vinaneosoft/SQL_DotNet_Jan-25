@@ -9,3 +9,33 @@ select trunc(789.555) from dual // it will cut decimal digits and returns the nu
 
 select trunc(789.555, 1) from dual  // 789.5
 select round(789.555, 1) from dual  // 789.6
+
+
+select abs(789.555) from dual // same +ve value
+select abs(789) from dual
+select abs(-789) from dual
+
+    
+select round(789.555564, 3) from dual;
+select round(789.555564, 2) from dual;
+select round(789.555564, 1) from dual;
+select round(789.555564, 0) from dual;
+select round(789.555564, -1) from dual; // 1-4, 5-9  =790
+select round(784.555564, -1) from dual; //1-4, 5-9  = 780
+select round(789.555564, -2) from dual; //1-49, 50-99 = 800
+select round(750.555564, -2) from dual; //1-49, 50-99 = 800
+select round(749.555564, -2) from dual;   1-49, 50-99 =700
+select round(789.555564, -3) from dual; 1-499, 500-999  =1000
+select round(749.555564, -3) from dual;  1-499, 500-999  0000  = 0
+select round(499.555564, -3) from dual; 
+select round(1499.555564, -3) from dual;
+
+
+select trunc(789.555564, 3) from dual;
+select trunc(789.555564, 2) from dual;
+select trunc(789.555564, 1) from dual;
+select trunc(789.555564, 0) from dual;
+select trunc(789.555564) from dual;
+select trunc(789.555564, -1) from dual; 
+
+ 
