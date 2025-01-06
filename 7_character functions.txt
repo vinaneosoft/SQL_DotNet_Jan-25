@@ -76,3 +76,13 @@ select case
     else first_name
     end "name"
 	from employees
+
+select * from test where soundex(first_name)!=soundex('dhanashree')
+
+
+select replace('India is my country', 'India', 'Bharat') from dual
+select replace('India is my country', 'i', 'I') from dual
+select replace('Mat kept on table', 'Mo', 'Ri') from dual
+select translate('Mat kept on table', 'Mo', 'Ri') from dual
+select translate('Mat kept on table', 'Mo', 'R') from dual
+select translate('Mat kept on table', 'Mo', 'Rin') from dual
