@@ -1,0 +1,7 @@
+Q. display employees with their joining date
+select employee_id, join_date from neoemployees /*default extract format for date DD-MON-YY*/
+
+Q. work in system date
+SELECT TO_CHAR(sysdate, 'YYYY' ) FROM DUAL;
+SELECT TO_CHAR(sysdate, 'yyyy' ) FROM DUAL;
+SELECT TO_CHAR(to_date('1-Jan-25'), 'yyyy' ) FROM DUAL;
