@@ -32,3 +32,30 @@ from employees
 SELECT dept_code, count(employees_id), LISTAGG(first_name || ' ' || last_name, ',')
 FROM employees
 group by dept_code
+
+Q. select max commission department wise
+select max(commission), dept_code
+from employees
+group by dept_code
+order by max(commission)
+
+Q. select min commission department wise
+select min(commission), dept_code
+from employees
+group by dept_code
+order by min(commission)
+
+
+
+Q. shoow sum of salary, sum of commission, city wise   : sum aggr function : it sums  row values from same column
+
+select count(employees_id),sum(salary), sum(commission), lower(trim(city)) from employees group by lower(trim(city));
+
+Q. display salary+commission for employees :   /*arithmetic operations on multiple columns' row values(numeric)*/
+
+select employees_id,city, salary, commission, salary+commission  /*value+null = null*/
+from employees
+
+Q. show sum of salary+commission, city wise
+select count(employees_id),sum(salary+commission), lower(trim(city)) from employees group by lower(trim(city));
+select count(employees_id),sum(salary)+sum(commission), lower(trim(city)) from employees group by lower(trim(city));
