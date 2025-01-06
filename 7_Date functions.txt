@@ -1,7 +1,19 @@
 Q. display employees with their joining date
 select employee_id, join_date from neoemployees /*default extract format for date DD-MON-YY*/
 
-Q. work in system date
 SELECT TO_CHAR(sysdate, 'YYYY' ) FROM DUAL;
 SELECT TO_CHAR(sysdate, 'yyyy' ) FROM DUAL;
 SELECT TO_CHAR(to_date('1-Jan-25'), 'yyyy' ) FROM DUAL;
+Q. Show in which the employee joined
+select first_name, to_char(join_date, 'yyyy') "joining year" from neoemployees;
+
+Q. Display employees full date
+select first_name, to_char (join_date, 'DAY DD-MONTH,YYYY, HH12:MI:SS p.m.') "joined on" 
+    from neoemployees ;
+select first_name, to_char (join_date, 'fmDAY DD-MONTH,YYYY, HH12:MI:SS p.m.') "joined on" 
+    from neoemployees;
+select first_name, to_char (join_date, 'fmDAY DD-MONTH,YYYY, HH24:MI:SS p.m.') "joined on" 
+    from neoemployees;
+    Q. Display employee's joining month and year
+select first_name, to_char (join_date, 'fmMonth, yyyy') "joined on" 
+    from neoemployees;
