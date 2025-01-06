@@ -47,7 +47,7 @@ order by min(commission)
 
 
 
-Q. shoow sum of salary, sum of commission, city wise   : sum aggr function : it sums  row values from same column
+Q. show sum of salary, sum of commission, city wise   : sum aggr function : it sums  row values from same column
 
 select count(employees_id),sum(salary), sum(commission), lower(trim(city)) from employees group by lower(trim(city));
 
@@ -59,3 +59,41 @@ from employees
 Q. show sum of salary+commission, city wise
 select count(employees_id),sum(salary+commission), lower(trim(city)) from employees group by lower(trim(city));
 select count(employees_id),sum(salary)+sum(commission), lower(trim(city)) from employees group by lower(trim(city));
+
+
+internal working to of these built in functions
+
+Arithmetic operations
+
+
+Q. Show total marks of every student (no group by need as data is stored horizontally)
+select std_id, (ph_marks+ch_marks+maths_marks+bio_marks)  "total marks"
+from students
+
+Q. Show total pcm marks, and total pcb marks  of every student  (no group by need as data is stored horizontally)
+select std_id, (ph_marks+ch_marks+maths_marks) "PCM marks", (ph_marks+ch_marks+bio_marks)  "PCB marks"
+from students
+
+
+
+Q. show highest marks in physics
+
+select max(ph_marks) as "highest in physics"
+from students;
+
+Q. Who has highest marks in physics
+
+select std_id, ph_marks from students
+where ph_marks=(
+select max(ph_marks) as "highest in physics"
+from students);
+
+Q. What is average marks obtained in maths?
+select round(avg(maths_marks)), trunc(avg(maths_marks)), avg(maths_marks)from students
+
+select round(avg(maths_marks)), trunc(avg(maths_marks)), sum(maths_marks)/ count(std_id) "average" from students
+
+desc sys.dual;
+
+select * from dual
+

@@ -1,0 +1,11 @@
+select ceil(789.555) from dual  // nearest whole number >=n
+select ceil(789.34) from dual  // 790
+select round(789.555) from dual  // 790
+select round(789.34) from dual  // 789
+
+select floor(789.555) from dual  // nearest whole number <= n
+select floor(789.34) from dual 
+select trunc(789.555) from dual // it will cut decimal digits and returns the number 789
+
+select trunc(789.555, 1) from dual  // 789.5
+select round(789.555, 1) from dual  // 789.6
