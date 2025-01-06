@@ -1,0 +1,46 @@
+Q. concat first and last name using concat function
+Q. concat fistname, lastname and city with concat operator
+select concat(first_name, last_name) "name", first_name || ' ' ||last_name || '-'||city "name with city"
+from employees
+
+Q. Kishor Pawar from WD department has salary 80000 : how u will display the same for all employees?
+
+select first_name || ' ' || last_name || ' from ' || dept_code || ' department has salary ' || salary  "Info" from employees;
+
+
+Q. Kishor Pawar from WD department has salary 80000 : how u will display the same for all employees?
+
+select initcap(first_name) || ' ' || initcap(last_name) || upper(' from ') || lower(dept_code) || ' department has salary ' || salary  "Info" 
+    from employees;
+
+select initcap('inDIA is my CountrY') from dual
+select initcap('sameer-vina-vinay') from dual
+
+select initcap('sameer-vina vinay') from dual
+select initcap('inDIA_is_my_CountrY') from dual
+
+select initcap('sameer&vina*vina%y') from dual
+select initcap('in9DIA_is_my_CountrY') from dual
+select initcap('vina123-mona321') from dual 
+
+Q. show length of department name
+select d_name, length(d_name) from departments;
+Q. show length of 'India is my country'
+select length('India is my country') from dual;
+
+Q. show length of '    India is my country  ' without trimming and with ltrim, rtirm and trim
+Select  LENGTH('    INDIA is my country ') from dual;
+Select  LENGTH(TRIM('    INDIA is my country ')) from dual;
+Select  LENGTH(LTRIM('    INDIA is my country ')) from dual;
+Select  LENGTH(RTRIM('    INDIA is my country ')) from dual;
+
+
+
+Q. show whether string 'technologies' present in department role : instr
+   SELECT INSTR(lower(d_role), 'technologies') from departments; /*0 if not present*/
+
+select case INSTR(lower(d_role), 'technologies') 
+    when 0 then 'not present'
+    else INSTR(lower(d_role), 'technologies') || ''
+	end "location of string 'technologies'"
+    from departments;
