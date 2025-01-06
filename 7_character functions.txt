@@ -44,3 +44,19 @@ select case INSTR(lower(d_role), 'technologies')
     else INSTR(lower(d_role), 'technologies') || ''
 	end "location of string 'technologies'"
     from departments;
+
+
+Q substr, soundex, replace, translate, lpad, rpad
+
+select substr('neosoft IT sourcing', 1, 5) from dual /*index starts from 1 string, start index, no of characters from si*/
+select substr('neosoft IT sourcing', -3, 2) from dual /* -ve index count from last*/
+
+ /*lpad, rpad : string, total length, char to append to meet total length*/
+select rpad(trim(first_name), 7 , '*'), length(trim(first_name)) 
+    from employees;
+
+select rpad(trim(first_name), (select max(length(trim(first_name))) from employees ), '*') "first name"
+    from employees;
+
+Q. show max length of first name among all employees
+select max(length(trim(first_name))) from employees
