@@ -60,3 +60,19 @@ select rpad(trim(first_name), (select max(length(trim(first_name))) from employe
 
 Q. show max length of first name among all employees
 select max(length(trim(first_name))) from employees
+
+length, lpad, rpad works with numeric data also
+select salary, length(salary) from employees
+select salary, length(salary), lpad(salary, 7, 0) from employees;
+
+/* rpad trims the string if actual length is more than total lengh we need*/
+select rpad(first_name, 4, '#') from employees ;
+
+select rpad(first_name, 4, '#') from employees
+    where length(first_name)<4;  /* filter */
+
+select case
+    when length(first_name)<4 then rpad(first_name, 4, '#') 
+    else first_name
+    end "name"
+	from employees
