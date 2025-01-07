@@ -54,3 +54,41 @@ Q. Show new joined employee's joining date
 select to_char(max(join_date), 'DD-MON-YY HH12:MI:SS') from neoemployees
 Q. Show most older employee's joining date
 select to_char(min(join_date), 'DD-MON-YY HH12:MI:SS') from neoemployees
+
+select greatest(join_date, sysdate) from neoemployees
+
+select join_date,ADD_MONTHS(join_date, -3) AS add_month FROM neoemployees;
+select add_months(sysdate, -2) AS add_month FROM neoemployees;
+
+select join_date, last_day(join_date) from neoemployees;
+
+select months_between(to_date('08-20-2020' ,'MM-DD-YYYY'),to_date('20-jan-20')) from dual;
+
+SELECT MONTHS_BETWEEN(DATE '2001-09-05', DATE '2001-05-04') AS months_difference FROM dual; /*yyyy-MM-dd*/
+
+Q. Show every employee's experience in month and in years
+select employee_id, round(months_between(sysdate,join_date)) || ' months', 
+    round(months_between(sysdate,join_date)/12) || ' years' from neoemployees;
+
+Q. what is highest experience in company?
+    
+SELECT MAX(ROUND(MONTHS_BETWEEN(SYSDATE, join_date) / 12)) AS highest_experience
+FROM neoemployees;
+
+Q. Who has highest experience in company
+    
+    SELECT employee_id, dept_code,
+       ROUND(MONTHS_BETWEEN(SYSDATE, join_date) / 12) AS "years experience"
+FROM neoemployees
+WHERE ROUND(MONTHS_BETWEEN(SYSDATE, join_date) / 12) = (
+    SELECT MAX(ROUND(MONTHS_BETWEEN(SYSDATE, join_date) / 12)) 
+    FROM neoemployees
+);
+
+Q. when next tueday coming after current date?
+SELECT NEXT_DAY(sysdate, 'TUESDAY') from dual;
+Q. When Monday coming after current date?
+SELECT NEXT_DAY(SYSDATE, 'MONDAY') FROM dual;
+
+Q. When same day will come in next week after given date?
+SELECT NEXT_DAY(to_date('20-Dec-2024'), TO_CHAR(to_date('20-Dec-2024'), 'Day')) FROM dual;
