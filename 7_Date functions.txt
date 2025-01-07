@@ -17,3 +17,32 @@ select first_name, to_char (join_date, 'fmDAY DD-MONTH,YYYY, HH24:MI:SS p.m.') "
     Q. Display employee's joining month and year
 select first_name, to_char (join_date, 'fmMonth, yyyy') "joined on" 
     from neoemployees;
+
+select to_char(join_date, 'fmDDth "of" MONTH, YYYY HH12:MI:SS') from neoemployees
+
+select to_char(join_date, 'fmDDsp "of" MONTH, YYYYsp HH12sp:MIsp:SS') from neoemployees /*sp : spelled out*/
+select to_char(join_date, 'fmDDspth "of" MONTH, YYYYsp HH12sp:MIsp:SS') from neoemployees
+select to_char(join_date, 'fmDDthsp "of" MONTH, YYYYsp HH12sp:MIsp:SS') from neoemployees
+// DD : 1
+//DDth : 1st
+// DDsp: one
+//DDspth : first
+
+/*input the date in date format using to_date,
+output the date in date format  using to_char*/
+/*to_date : DD/D-MON-YYYY/YY/Y no need to send format as 2nd parameter otherwise u need to send format as 2nd parameter*/
+/*to_char: output: bydefault DD-MON-YY , other that this format, if we want different format then we need to send format as a second parameter*/
+
+select greatest (to_date('23-Jan-23'),to_date('20-Jan-2023'),to_date('23-Dec-2023')) from dual
+select least (to_date('23-Jan-23'),to_date('20-Jan-2023'),to_date('23-Dec-2023')) from dual
+
+select greatest (to_date('23-Jan-2023 11:30:00', 'DD-MON-YYYY HH12:MI:SS'),
+    to_date('23-Jan-2023 10:30:00', 'DD-MON-YYYY HH12:MI:SS'),
+   to_date('23-Dec-2023 10:30:00', 'DD-MON-YYYY HH12:MI:SS')) from dual
+
+select to_char(
+    	least(to_date('23-Jan-2023 11:30:00', 'DD-MON-YYYY HH12:MI:SS'),
+    	to_date('23-Jan-2023 10:30:00', 'DD-MON-YYYY HH12:MI:SS'),
+   		to_date('23-Dec-2023 10:30:00', 'DD-MON-YYYY HH12:MI:SS')
+    	), 'DD-MON-YYYY HH12:MI:SS'
+    )from dual
