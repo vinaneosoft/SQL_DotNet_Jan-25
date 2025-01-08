@@ -1,0 +1,24 @@
+result from one query joined with result another query
+
+Q. Show Employee ids  from LD with their cities  and employee ids from WD with their first name
+select employees_id , city "city or firstname", dept_code from employees where dept_code='LD'
+UNION
+select employees_id,first_name, dept_code from employees where dept_code = 'WD'
+order by dept_code;
+
+
+
+1. number of columns and their data types of set queries must match
+
+Q. Show Employee ids  from LD with their city  and employee ids from WD with their salary
+    below query will not work
+/*expression must have same datatype as corresponding expression*/
+select employees_id , city "city or salary", dept_code from employees where dept_code='LD'
+UNION
+select employees_id,salary, dept_code from employees where dept_code = 'WD'
+order by dept_code;
+
+select employees_id , city "city or salary", dept_code from employees where dept_code='LD'
+UNION
+select employees_id,to_char(salary), dept_code from employees where dept_code = 'WD'
+order by dept_code;
