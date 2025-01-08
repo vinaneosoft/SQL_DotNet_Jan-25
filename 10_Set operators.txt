@@ -22,3 +22,55 @@ select employees_id , city "city or salary", dept_code from employees where dept
 UNION
 select employees_id,to_char(salary), dept_code from employees where dept_code = 'WD'
 order by dept_code;
+
+
+Q. Show employee id from mumbai city and show employee ids from wd department
+select employees_id, city, dept_code from employees
+    where lower(trim(city))='mumbai' or dept_code='WD'
+
+select employees_id, city, dept_code  from employees
+    where lower(trim(city))='mumbai'
+    UNION ALL
+select employees_id, city, dept_code from employees
+    where dept_code='WD'
+    
+select employees_id from employees
+    where lower(trim(city))='mumbai'
+    UNION ALL
+select employees_id from employees
+    where dept_code='WD'
+
+select employees_id from employees
+    where lower(trim(city))='mumbai'
+    UNION 
+select employees_id from employees
+    where dept_code='WD'
+
+select employees_id, city, dept_code  from employees
+    where lower(trim(city))='mumbai'
+    UNION
+select employees_id, city, dept_code from employees
+    where dept_code='WD'
+
+Q. Show employees from mumbai city working in wd department
+
+select employees_id, city, dept_code from employees
+    where lower(trim(city))='mumbai' and dept_code='WD'
+
+select employees_id, city, dept_code  from employees
+    where lower(trim(city))='mumbai'
+ INTERSECT  
+select employees_id, city, dept_code from employees
+    where dept_code='WD'
+
+
+Q. Show employees wd department not living in Mumbai
+
+select employees_id, city, dept_code from employees
+where dept_code='WD'and lower(trim(city))!='mumbai'
+
+select employees_id, city, dept_code from employees   /*mumbai, pune, kolkata, null*/
+where dept_code='WD'
+minus
+select employees_id, city, dept_code from employees /*mumbai*/
+where lower(trim(city))='mumbai'
