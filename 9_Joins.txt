@@ -85,4 +85,11 @@ from   employees emp  left join  departments2 dept
 on  emp.dept_code=dept.dept_code
     
 
+Q show employees with their department names who working in department
+   Also show deparments wehre no any employee working
+    
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from   employees emp  right outer join  departments2 dept
+on  emp.dept_code=dept.dept_code
+
   
