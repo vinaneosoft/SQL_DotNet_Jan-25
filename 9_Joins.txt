@@ -1,0 +1,25 @@
+Q. Show Empoyees with their department names
+/*Equi Join*/
+select employees_id, first_name, dept_code, D_CODE,D_NAME
+from employees, departments
+where  dept_code=D_CODE
+
+
+Q. if same column name, how to qualify a column with table name or table alias
+
+/*column ambiguously defined*/
+select employees_id, first_name, dept_code,dept_code,D_NAME
+from departments2,employees
+where  dept_code=dept_code
+
+select employees_id, first_name, employees.dept_code,departments2.dept_code,D_NAME
+from departments2,employees
+where  employees.dept_code=departments2.dept_code
+
+select employees_id, first_name, emp.dept_code,dept.dept_code,D_NAME
+from departments2 dept,employees emp
+where  emp.dept_code=dept.dept_code
+    
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from departments2 dept,employees emp
+where  emp.dept_code=dept.dept_code
