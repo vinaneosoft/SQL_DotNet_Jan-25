@@ -34,6 +34,51 @@ insert into neoemployees values (444,'Kishori' ,'Jagri' ,'Mumbai',to_date('14-DE
 insert into neoemployees values (888,'Ruman' ,'Soni' ,'Mumbai',to_date('25-JAN-2000 9:30:00','DD-MON-YYYY HH24-MI-SS'),333,'WD');
 insert into neoemployees values(869,'Manisha' ,'Pawar', 'Pune', to_date('1-FEB-2022 10:30:00','DD-MON-YYYY HH24-MI-SS'), null,'HR');
 
+/*12 am to 11.59 am*/
+/*12 pm to 11.59 pm*/
+select to_char(join_date, 'DD-MM-YY, HH24:MI:SS a.m.'), to_char(round(join_date,'dd'), 'DD-MM-YY, HH12:MI:SS a.m.') from neoemployees;
 
+select TO_CHAR(ROUND(TO_DATE('01-JAN-2022 23:59:00', 'DD-MON-YYYY HH24:MI:SS')), 'DD-MM-YYYY, HH24:MI:SS') AS with_round
+FROM dual;
+
+select to_char(join_date, 'DD-MM-YY, HH24:MI:SS a.m.'), to_char(round(join_date,'mm'), 'DD-MM-YY, HH12:MI:SS a.m.') from neoemployees;
+
+
+in MySQL to store only time we have TIME data type but in Oracle we use DATE/ TIMESTAMP
+
+in oracle how to deal with only time
+
+
+select salary, commission,salary+commission, salary+NVL(commission,'no commission') from employees
+
+select NVL(commission,'no commission') from employees; -- error: invalid number
+--solution:
+select NVL(to_char(commission),'no commission') from employees; 
+
+    
+select NVL2(commission,'present','no commission') from employees
+
+select NVL2(commission,commission||'','no commission') from employees
+
+select NVL2(commission,salary+commission,salary) from employees
+
+select NVL(city,'city notmentioned') from employees
+
+select NVL(dept_code,'no department assigned yet') from employees
+
+select nullif(45,45) from dual
+
+select NULLIF(salary,commission) from employees
+
+select NULLIF(45,45) from dual
+select NULLIF(45,47) from dual
+
+Q. Show null if employees have same salary and same commission , else show only salary
+insert into employees values(888,'Meena','Bhagat','Satara',40,45000,45000,null);
+select employees_id, nullif (salary,commission) from employees
+
+Q. Show message "same salary same commission " if salary and commission is same
+
+select nvl( to_char(nullif(salary,commission)),'same salry same commission') from employees
 
 

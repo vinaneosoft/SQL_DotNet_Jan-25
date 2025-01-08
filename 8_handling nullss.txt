@@ -1,0 +1,42 @@
+select salary, commission,salary+commission, salary+NVL(commission,'no commission') from employees
+
+select NVL(commission,'no commission') from employees; -- error: invalid number
+--solution:
+select NVL(to_char(commission),'no commission') from employees; 
+
+    
+select NVL2(commission,'present','no commission') from employees
+
+select NVL2(commission,commission||'','no commission') from employees
+
+select NVL2(commission,salary+commission,salary) from employees
+
+select NVL(city,'city notmentioned') from employees
+
+select NVL(dept_code,'no department assigned yet') from employees
+
+select nullif(45,45) from dual
+
+select NULLIF(salary,commission) from employees
+/*data type of all expr must match*/
+select COALESCE(last_name, city,to_char(commission)) from employees
+/*first not null expr it will return*/
+select coalesce(null, null,56, 34, null, 67, 78) from dual
+
+select nvl(city,'no data found'), nvl(last_name, 'no data found'), 
+    nvl(to_char(commission), 'no data found') from employees;
+
+   
+select salary, decode (sign(salary-30000), -1, salary+3000, 0, salary+2000,1,
+    decode (sign(salary-50000), -1, salary+2000, 0 , salary+1000, 1,  salary+1000)
+    )  "projected increment"
+from employees;
+
+select salary, case
+    when salary<35000 then salary+3000
+    when salary>=35000 and salary<50000 then salary+2000
+    else salary+1000 
+    end "projected increment"
+from employees
+
+
