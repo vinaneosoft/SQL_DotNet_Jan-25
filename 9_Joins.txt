@@ -37,3 +37,35 @@ where dept_code in ( select dept_code from departments2 where d_budget= (select 
    
 /*select min(D_BUDGET) from departments2
 select dept_code from departments2 where d_budget= (select min(D_BUDGET) from departments2)*/
+
+
+
+select * from departments2
+Q show employees with their department names using outer join (join), inner join
+    it will not show those employees which are not working in any department
+    it will not show those department where no any employee working
+    
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from departments2 dept join employees emp
+on  emp.dept_code=dept.dept_code
+
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from departments2 dept inner join employees emp
+on  emp.dept_code=dept.dept_code
+    
+Note : driving : less number of rows and driven:more number of rows
+
+Note : oracle join, left outer join, right outer join, full outer join, inner join
+
+    
+Q. Show employees not working in any department
+select employees_id, first_name, dept_code
+from employees where dept_code is null
+
+Q. Show Departments where no any employee working
+select d_name, dept_code 
+from departments2
+where dept_code not in (select distinct dept_code from employees where dept_code is not null )  
+same with Set Operations
+
+  
