@@ -23,3 +23,17 @@ where  emp.dept_code=dept.dept_code
 select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
 from departments2 dept,employees emp
 where  emp.dept_code=dept.dept_code
+
+
+Q. Show Employees with their department details where departments which having lower budget among all
+select employees_id, first_name, emp.dept_code,dept.dept_code,D_NAME, d_budget
+from departments2 dept,employees emp
+where  emp.dept_code=dept.dept_code and d_budget= (select min(D_BUDGET) from departments2)
+    
+Q. Show Employee details where departments having lower budget among all
+select employees_id, first_name, dept_code
+from employees
+where dept_code in ( select dept_code from departments2 where d_budget= (select min(D_BUDGET) from departments2))
+   
+/*select min(D_BUDGET) from departments2
+select dept_code from departments2 where d_budget= (select min(D_BUDGET) from departments2)*/
