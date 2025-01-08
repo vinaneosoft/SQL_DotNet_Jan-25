@@ -68,4 +68,21 @@ from departments2
 where dept_code not in (select distinct dept_code from employees where dept_code is not null )  
 same with Set Operations
 
+Q show employees with their department names who working to deparment
+   Also show those employees which are not working in any department
+    
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from   employees emp  left outer join  departments2 dept
+on  emp.dept_code=dept.dept_code
+
+    
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from   employees emp  left join  departments2 dept
+on  emp.dept_code=dept.dept_code
+
+select *
+from   employees emp  left join  departments2 dept
+on  emp.dept_code=dept.dept_code
+    
+
   
