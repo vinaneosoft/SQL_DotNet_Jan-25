@@ -1,0 +1,10 @@
+Note : if u want to use oracle reservedwords as column name then mention them in ""
+    in create table query
+while selecting that column in select clause, also use ""
+CREATE TABLE sample_table3 (
+    id INT,
+    "in" VARCHAR2(50) 
+);
+insert into sample_table3 values(1, 'hi');
+
+select "in" from sample_table3;

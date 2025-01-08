@@ -92,4 +92,72 @@ select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAM
 from   employees emp  right outer join  departments2 dept
 on  emp.dept_code=dept.dept_code
 
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from   departments2 dept  left outer join  employees emp
+on  emp.dept_code=dept.dept_code
+
+
+Q show employees with their department names who working in department
+   Also show deparments where no any employee working
+       Also show employees not working in any department
+select emp.employees_id, emp.first_name, emp.dept_code,dept.dept_code,dept.D_NAME
+from   departments2 dept  full outer join  employees emp
+on  emp.dept_code=dept.dept_code
+
+note :  equi join, inner join, join = same result   
+=, inner join, join
+
+left outer join === left join
+
+right outer join == right join
+
+full outer join == full join
+
+/*natural join : default common column : fk col name and pk col name must be same
+    on clause not needed, qualifier for ambigous column not needed*/
+select employees_id, first_name, dept_code, d_name
+from   employees emp natural join  departments2 dept
+
+Note : when natural join fails to find common column between table then it will make all possible matches
+    from all rows of 1 table to all rows of another tables
+select employees_id, first_name, dept_code, d_code, d_name
+from   employees emp natural join  departments dept
+order by employees_id
+
+    
+
+Q. Show projection where every employee has worked with every department
+
+select employees_id, first_name, e.dept_code, d.dept_code, d_name
+from employees e cross join departments2 d
+
+Q. Show name of managers of all employees
+select emp.employee_id, emp.first_name, emp.manager_id, mgr.employee_id,mgr.first_name
+from neoemployees emp inner join neoemployees mgr
+on  emp.manager_id=mgr.employee_id
+
+
+
+
+Q. Show name of managers of all employees. Also show employees having no manager
+select emp.employee_id, emp.first_name, emp.manager_id, mgr.employee_id,mgr.first_name
+from neoemployees emp  left join neoemployees mgr
+on  emp.manager_id=mgr.employee_id;
+
+
+Q. Show name of managers of all employees. Also show employees who are not working as manager
+select emp.employee_id, emp.first_name, emp.manager_id, mgr.employee_id,mgr.first_name
+from neoemployees emp  right join neoemployees mgr
+on  emp.manager_id=mgr.employee_id;
+
+
+Q. Show name of managers of all employees.
+    Also show employees having no manager
+Also show employees who are not working as manager
+select emp.employee_id, emp.first_name, emp.manager_id, mgr.employee_id,mgr.first_name
+from neoemployees emp  full join neoemployees mgr
+on  emp.manager_id=mgr.employee_id;
+
+
+
   
