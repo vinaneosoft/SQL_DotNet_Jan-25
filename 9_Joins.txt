@@ -159,5 +159,15 @@ from neoemployees emp  full join neoemployees mgr
 on  emp.manager_id=mgr.employee_id;
 
 
+Q. Show all employees from singing and dancing committee
+select * from  committee_members
+    where com_id='sing' or com_id='dance' 
+
+select employees_id, e.first_name, com_id, c.com_name 
+    from   committee c natural join committee_members cm natural join employees e
+    where com_id='sing' or com_id='dance' 
+/* same name col must not have qualifier: natural join */
+    
+
 
   
