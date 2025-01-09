@@ -107,4 +107,13 @@ select employees_id from committee_members where com_id='sing';
 Q. Show employees from LD department which are there in dancing committee
 select employees_id from employees where dept_code='LD'
 intersect
-se
+select employees_id from committee_members where com_id='dance';
+
+select * from employees e where dept_code='LD'
+and employees_id in (select employees_id from committee_members where com_id='dance')
+    
+SELECT *
+FROM employees e JOIN committee_members cm 
+ON e.employees_id = cm.employees_id
+WHERE e.dept_code = 'LD'
+AND cm.com_id = 'dance';
