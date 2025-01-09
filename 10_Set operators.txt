@@ -28,6 +28,11 @@ Q. Show employee id from mumbai city and show employee ids from wd department
 select employees_id, city, dept_code from employees
     where lower(trim(city))='mumbai' or dept_code='WD'
 
+Q. Show employee ids not added in any committee : set operation (minus)
+select employees_id from employees
+minus
+select employees_id from committee_members;
+
 select employees_id, city, dept_code  from employees
     where lower(trim(city))='mumbai'
     UNION ALL
@@ -74,3 +79,15 @@ where dept_code='WD'
 minus
 select employees_id, city, dept_code from employees /*mumbai*/
 where lower(trim(city))='mumbai'
+
+
+Q. Show employees from LD department which are there in singing committee
+u can execute above query with 1. join 2. intersect set operator
+select employees_id from employees where dept_code='LD'
+intersect
+select employees_id from committee_members where com_id='sing';
+
+Q. Show employees from LD department which are there in dancing committee
+select employees_id from employees where dept_code='LD'
+intersect
+se
