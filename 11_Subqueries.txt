@@ -58,3 +58,28 @@ where lower(trim(city))='pune'
 and commission<(select commission from employees where employees_id=131))
 
 
+Q. Show younger employee from SM department whose age is less than youngest employee from WD department
+
+SELECT employees_id, first_name, age
+FROM employees
+WHERE dept_code = 'SM'
+  AND age < (SELECT MIN(age) FROM employees WHERE dept_code = 'WD');
+
+
+Q. Who earns same as employees from LD department 
+
+sq. select distinct salary from employees where dept_code='LD' /*multi row sub query*/  /*in, not in, =any,  <any, >any , = all, < all, >all*/
+main 
+    below query gives error /*single-row subquery returns more than one row*/
+    select * from employees
+where dept_code !='LD' and
+ salary = (
+    select distinct salary from employees where dept_code='LD'
+)
+
+ select * from employees
+where dept_code !='LD' and
+ salary in (
+   select distinct salary from employees where dept_code='LD'
+)
+
