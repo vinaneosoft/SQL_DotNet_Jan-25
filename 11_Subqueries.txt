@@ -1,0 +1,18 @@
+Q. Who has max salary in LD department
+
+sq. what is max salary of LD department
+select max(salary)
+from employees
+where dept_code ='LD'   /*single row subquery*/
+output = 90000     =, >, <, >=, <=, !=
+
+Final Query:
+    
+select employees_id, first_name, salary
+from employees
+where dept_code ='LD' 
+and salary = (
+    select max(salary)
+from employees
+where dept_code ='LD'
+)
