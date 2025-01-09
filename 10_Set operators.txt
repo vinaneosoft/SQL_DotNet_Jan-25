@@ -81,6 +81,23 @@ select employees_id, city, dept_code from employees /*mumbai*/
 where lower(trim(city))='mumbai'
 
 
+Q. Show employee ids not added in any committee : 
+select employees_id
+from employees
+minus 
+select employees_id 
+from  committee_members;
+
+select employees_id
+from employees
+where employees_id not in(select employees_id 
+from  committee_members) 
+
+select e.employees_id,  c.com_id
+    from employees e left join committee_members c 
+    on e.employees_id=c.employees_id
+    where c.com_id is null
+
 Q. Show employees from LD department which are there in singing committee
 u can execute above query with 1. join 2. intersect set operator
 select employees_id from employees where dept_code='LD'
