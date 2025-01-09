@@ -137,6 +137,48 @@ salary > (
 
 Q. Who earns more than all employees from LD department 
  select * from employees
-where dept_code !='LD' and
- salary > (
-   
+where dept_code != 'LD' and
+salary > (
+    select  max(salary) from employees where dept_code = 'LD'
+)
+
+
+Q. Show every employee from SM department with tag  'Congratulations' if from their department any employee
+working in any committee
+
+    select employees_id, first_name
+    from employees where dept_code='SM'
+
+
+SELECT  first_name || ' Congratulations' 
+FROM employees 
+WHERE dept_code = 'SM'
+  AND EXISTS (
+      SELECT e.employees_id
+      FROM committee_members cm, employees e
+    	where cm.employees_id=e.employees_id
+    	and e. dept_code='SM'
+  );
+
+Q. Congratulate that employee from SM department who is working in committee
+select e.employees_id,e.first_name || ' Congratulations'
+from employees e
+where dept_code='SM'
+    and exists(select * from committee_members cm where e.employees_id=cm.employees_id)
+
+ SELECT e.employees_id || ' congratulations'
+      FROM committee_members cm, employees e
+    	where cm.employees_id=e.employees_id
+    	and e. dept_code='SM'
+
+
+ Q. Who has maximum salary in their department
+
+select e1.employees_id, e1. first_name, e1.dept_code, e1.salary
+from employees e1
+where  e1.salary =  (select max(salary)
+    from employees e2
+    group by dept_code
+    having e1.dept_code=e2.dept_code
+	and  dept_code is not null)
+
