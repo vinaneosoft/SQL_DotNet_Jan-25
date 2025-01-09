@@ -83,3 +83,60 @@ where dept_code !='LD' and
    select distinct salary from employees where dept_code='LD'
 )
 
+
+ select * from employees
+where dept_code !='LD' and
+ salary =any (
+   select distinct salary from employees where dept_code='LD'
+)
+
+
+Q. Who earns different than employees from LD department   
+
+sq. select distinct salary from employees where dept_code='LD' /*multi row sub query*/  /*in, not in, =any,  <any, >any , = all, < all, >all*/
+/*= any /all, < any/all, >any /all, <= any /all, >= any /all */
+in / =any: or operation
+    not in /!=all : and operation
+ select * from employees
+where dept_code !='LD' and
+ salary !=all (
+   select distinct salary from employees where dept_code='LD'
+)
+
+ select * from employees
+where dept_code !='LD' and
+ salary not in (
+   select distinct salary from employees where dept_code='LD'
+)
+
+
+Q. Who earns more than any of the employee from LD department    /*multi row sub q*/
+  
+/*= any /all, < any/all, >any /all, <= any /all, >= any /all */
+any : or, all : and
+select * from employees
+where dept_code != 'LD' and
+salary >any (
+    select distinct salary from employees where dept_code = 'LD'
+)
+    
+Q. Who earns more than all employees from LD department 
+ select * from employees
+where dept_code !='LD' and
+ salary >all (
+   select distinct salary from employees where dept_code='LD'
+)
+
+Q. Who earns more than any of the employee from LD department    /*single row sub q*/
+
+select * from employees
+where dept_code != 'LD' and
+salary > (
+    select  min(salary) from employees where dept_code = 'LD'
+)
+
+Q. Who earns more than all employees from LD department 
+ select * from employees
+where dept_code !='LD' and
+ salary > (
+   
