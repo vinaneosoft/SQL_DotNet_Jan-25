@@ -45,3 +45,12 @@ insert into test values('03-Jan-2024');
 select * from test
 select to_char (hiredate, 'DD-MON-YYYY, HH12:MI:SS a.m.') from test;
 select to_char (hiredate, 'DD-MON-YYYY, HH24:MI:SS p.m.') from test;
+
+insert into test values(to_date('12-Jan-2024 13:30:00', 'DD-MON-YYYY HH24:MI:SS'));
+insert into test values(to_date('2-Jan-2024 1:30:00', 'DD-MON-YYYY HH24:MI:SS'));
+insert into test values(to_date('2-Jan-2024 2:30:00 p.m.', 'DD-MON-YYYY HH12:MI:SS a.m.'));
+insert into test values(to_date('2-Jan-2024 2:30:00 a.m.', 'DD-MON-YYYY HH12:MI:SS a.m.'));
+
+select * from test
+select to_char (hiredate, 'DD-MON-YYYY, HH12:MI:SS a.m.') from test;
+select to_char (hiredate, 'DD-MON-YYYY, HH24:MI:SS p.m.') from test;
