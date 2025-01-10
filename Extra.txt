@@ -1,4 +1,4 @@
-Note : if u want to use oracle reservedwords as column name then mention them in ""
+Note : if u want to use oracle reserved words as column name then mention them in ""
     in create table query
 while selecting that column in select clause, also use ""
 CREATE TABLE sample_table3 (
@@ -8,3 +8,26 @@ CREATE TABLE sample_table3 (
 insert into sample_table3 values(1, 'hi');
 
 select "in" from sample_table3;
+
+
+size : internally where it is used
+
+Q. Assign a row number to the order we are fetching
+SELECT 
+    ROW_NUMBER() OVER(
+        ORDER BY employees_id
+    ) row_num, 
+   employees_id, 
+    first_name
+FROM 
+    employees;
+
+SELECT 
+    ROW_NUMBER() OVER(
+        ORDER BY dept_code
+    ) row_num, 
+   count(employees_id),
+ 	dept_code
+FROM 
+    employees
+group by dept_code

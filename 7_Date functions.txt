@@ -92,3 +92,19 @@ SELECT NEXT_DAY(SYSDATE, 'MONDAY') FROM dual;
 
 Q. When same day will come in next week after given date?
 SELECT NEXT_DAY(to_date('20-Dec-2024'), TO_CHAR(to_date('20-Dec-2024'), 'Day')) FROM dual;
+
+
+Q. Show experience of employees in days
+SELECT months_between(sysdate, join_date) * 30.44, SYSDATE - join_date AS days_diff
+FROM neoemployees;
+
+SELECT round(months_between(sysdate, join_date) * 30.44) "days", round(SYSDATE - join_date) "days"
+FROM neoemployees;
+
+Q. Show experience of employees who joined on '9-Jan-25'
+SELECT months_between(sysdate, to_date('9-Jan-25')) * 30.436875, SYSDATE - to_date('9-Jan-25') "days"
+FROM neoemployees;
+
+Q. add 2 days in joining date, add 2 months in joining date, add 2 years in joining date
+SELECT join_date+2, add_months(join_date, 2), add_months(join_date, 24)
+FROM neoemployees;

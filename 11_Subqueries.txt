@@ -182,3 +182,72 @@ where  e1.salary =  (select max(salary)
     having e1.dept_code=e2.dept_code
 	and  dept_code is not null)
 
+select e1.employees_id, e1. first_name, e1.dept_code, e1.salary
+from employees e1
+where  e1.salary =  (select max(salary)
+    from employees e2
+    where e1.dept_code=e2.dept_code
+	and  dept_code is not null)
+
+
+Q. Who is oldest employee in every department
+select *
+from employees e
+where age=(select max(age) from
+    employees e2 where e.dept_code=e2.dept_code group by dept_code)
+
+select *
+from employees e
+where age=(select max(age) from
+    employees e2 group by dept_code having e.dept_code=e2.dept_code)    
+    
+select  e.first_name, e.last_name, e.age, e.dept_code
+from employees e
+where e.age = (
+    select max(e2.age)
+    from employees e2
+    where e2.dept_code = e.dept_code
+);
+
+
+Q. What is average salary of LD department?
+
+select round(avg(salary))
+from employees 
+where dept_code='LD'
+
+Q. Show salary of employees from 'LD'
+    select salary from employees where dept_code='LD'
+
+Q. Which employees from LD department have salary < avg salary of their department?
+select * from employees 
+    where salary<(select round(avg( salary)) from employees where dept_code='LD')
+and dept_code='LD'
+
+
+Q. Which employees from their department have salary < avg salary of their department?
+
+select * from employees e2
+	where salary<(select round(avg(salary)) from employees e1 where e1.dept_code=e2.dept_code)
+
+Q.Who is taking maximum commission in every department?
+
+    select * from employees e1
+    where
+     commission=(select max(commission) from employees
+     where dept_code=e1.dept_code)
+
+  
+Q. Who is taking maximum commission in SM deparment?
+Sq: max commission of SM department : m
+Main : commission=m
+select * from employees
+    where dept_code='SM'
+    and
+     commission=(select max(commission) from employees
+     where dept_code='SM')
+
+
+
+
+
