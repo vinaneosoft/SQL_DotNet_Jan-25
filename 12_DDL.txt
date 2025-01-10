@@ -1,0 +1,47 @@
+create table test( name char(10));
+insert into test values('Amol');
+insert into test values('Om');
+insert into test values('Maneesha');
+select length(name) from test;
+
+create table test( name varchar(10));
+insert into test values('Amol');
+insert into test values('Om');
+insert into test values('Maneesha');
+select length(name) from test;
+
+
+create table test( salary number(6));
+insert into test values(9);
+insert into test values(9999);
+insert into test values(999999);
+
+create table test(salary number);
+insert into test values(9);
+insert into test values(9999);
+insert into test values(999999);
+insert into test values(9999999999999999999999);
+insert into test values(99999999999999999999991);
+insert into test values(99999999999999999999999);
+insert into test values(999999999999999999999999999999999999991);
+
+how sign of a number is getting stored along with number
+
+
+create table test( binarydata raw(5)); 
+
+insert into test values(HEXTORAW('4D617'))
+
+
+create table test( hiredate DATE); 
+
+/*The default date format is ‘DD-MON-YY’. 
+If date is specified without time component, the default time is 12:00:00  a.m. (midnight)*/
+create table test( hiredate DATE); 
+insert into test values('12-Jan-24');
+insert into test values('2-Jan-2024');
+insert into test values('03-Jan-2024');
+
+select * from test
+select to_char (hiredate, 'DD-MON-YYYY, HH12:MI:SS a.m.') from test;
+select to_char (hiredate, 'DD-MON-YYYY, HH24:MI:SS p.m.') from test;

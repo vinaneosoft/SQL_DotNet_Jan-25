@@ -48,3 +48,17 @@ FROM employees
 
 SELECT * FROM eids_with_row
 WHERE row_num >= 1 and row_num <= 10;
+
+
+Database : rowid unique, table : rownum unique
+select rowid,rownum, e.*
+from employees e;
+   
+select rowid,rownum, d.*
+from departments d;
+
+how rowid are getting generated and assigned to each row of table
+
+
+DML : update command 
+   
