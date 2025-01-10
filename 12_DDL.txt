@@ -54,3 +54,20 @@ insert into test values(to_date('2-Jan-2024 2:30:00 a.m.', 'DD-MON-YYYY HH12:MI:
 select * from test
 select to_char (hiredate, 'DD-MON-YYYY, HH12:MI:SS a.m.') from test;
 select to_char (hiredate, 'DD-MON-YYYY, HH24:MI:SS p.m.') from test;
+
+
+create table trainers(eid number, name varchar(50), hiredate DATE, age number(2))
+insert into trainers values(null, null, null, null); /*no NOT NULL constraint on any column*/
+insert into trainers(name, age) values('meera', 45); /*eid NULL, hiredate NULL bcz no NOT NULL constraints on those columns*/
+insert into trainers(age, name) values(45, 'meera');
+insert into trainers(eid, name) values(222, 'veera');
+insert into trainers(eid, name) values(222, 'veera'); /*duplicate allowed : bcz no unique constraints*/
+
+insert into trainers values(444, 'poonam', '4-July-2024') /*error*/
+insert into trainers(eid, name, hiredate) values(444, 'poonam', '4-July-2024')
+
+insert into trainers values(555,'Megha', '2-Jan-2023', 5); /*no check constraint*/
+
+/*we define constraints in create table query
+constraints applied / checked while DML operations
+*/
