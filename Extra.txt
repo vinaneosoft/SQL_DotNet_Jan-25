@@ -31,3 +31,20 @@ SELECT
 FROM 
     employees
 group by dept_code
+
+
+Q. Fetch only particular row / rows 
+
+
+with eids_with_row as (
+    SELECT 
+    ROW_NUMBER() OVER(
+        ORDER BY employees_id
+    ) row_num, 
+   employees_id, 
+    first_name
+FROM employees
+)
+
+SELECT * FROM eids_with_row
+WHERE row_num >= 1 and row_num <= 10;
