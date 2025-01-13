@@ -141,5 +141,117 @@ constraint fk_dc foreign key (dept_code) references departments(d_code)
 );  
 
 
+insert into departments values ('SM', 'Sales and Marketing', 900000, 'selling and marketing services and products');
+insert into departments values ('HR', 'Human Resource', 500000,'managing resources from all departments');
+insert into departments values ('LD', 'Learning and Development', 600000,'dealing with trainings and new learning trends');
+insert into departments values ('WD', 'Web Development', 500000, 'Developing Web applications with different technologies');
+insert into departments values ('RST', 'Research and Testing', 1500000, 'Researching new algorithms and testing them for variaous technologies');
+
+
+
+insert into employees1 values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
+insert into employees1 values(121,'Kamal' ,'Chopra', null, 40,70000,null,'HR');
+insert into employees1 values(112,'Rupa' ,'Wagh', 'Pune', 56,75000,5000,'WD');
+insert into employees1 values(131,'karuna' ,'Trivedi', 'Solapur', 46,65000,3000,'LD');
+insert into employees1 values(115,'rupali' ,'Patil', 'pune', 45,75000,null,'SM');
+insert into employees1 values(114,'Kaival' ,'triveni', 'Delhi', 40,60000,2000,'SM');
+insert into employees1 values(101,'Kishor' ,'Pawar', 'Solapur', 44,65000,2000,'HR');
+insert into employees1 values(155,'Yash' ,'Chopra', 'Delhi', 40,73000,null,'LD');
+insert into employees1 values(255,'Pavan' ,'Kumar', 'Mumbai', 40,70000,4000,'LD');
+insert into employees1 values(102,'Sonu' ,'Chaturvedi', 'Kolkata', 46,80000,5000,'WD');
+insert into employees1 values(109,'Amar' ,'Jadhav', 'PUNE', 43,95000,4000,'WD');
+insert into employees1 values(110,'Amit' ,'Jagdale', 'Delhi', 44,92000,5000,'HR');
+insert into employees1 values(555,'Hari','Kumar','pune',50,92000,2000,'HR');
+
+
+
+/* below query gives error.
+child record found*/
+delete from departments where d_code='WD';
+
+select * from employees1 where dept_code ='WD'; /* childs records */
+
+/*solution :
+1. on delete set null  : if record is removed from primary table then
+in secondary table for matching child records foriegn key value will be set to null
+2. on delete cascade :  if record is removed from primary table then
+in secondary table matching child records also gets removed*/
+
+create table employees3 (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), 
+commission number(7), 
+dept_code varchar(10),
+constraint fk_dc_emp3 foreign key (dept_code) references departments(d_code) on delete set null
+);  
+
+
+
+create table employees4 (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), 
+commission number(7), 
+dept_code varchar(10),
+constraint fk_dc_emp4 foreign key (dept_code) references departments(d_code) on delete cascade
+);  
+
+
+create table employees5 (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), 
+commission number(7), 
+dept_code varchar(10)  default 'RST',
+constraint fk_dc_emp5 foreign key (dept_code) references departments(d_code) on delete set null
+);  
+
+
+
+
+insert into employees3 values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
+insert into employees3 values(121,'Kamal' ,'Chopra', null, 40,70000,null,'HR');
+insert into employees3 values(112,'Rupa' ,'Wagh', 'Pune', 56,75000,5000,'WD');
+insert into employees3 values(131,'karuna' ,'Trivedi', 'Solapur', 46,65000,3000,'LD');
+insert into employees3 values(115,'rupali' ,'Patil', 'pune', 45,75000,null,'SM');
+insert into employees3 values(114,'Kaival' ,'triveni', 'Delhi', 40,60000,2000,'SM');
+insert into employees3 values(101,'Kishor' ,'Pawar', 'Solapur', 44,65000,2000,'HR');
+insert into employees3 values(155,'Yash' ,'Chopra', 'Delhi', 40,73000,null,'LD');
+insert into employees3 values(255,'Pavan' ,'Kumar', 'Mumbai', 40,70000,4000,'LD');
+insert into employees3 values(102,'Sonu' ,'Chaturvedi', 'Kolkata', 46,80000,5000,'WD');
+insert into employees3 values(109,'Amar' ,'Jadhav', 'PUNE', 43,95000,4000,'WD');
+insert into employees3 values(110,'Amit' ,'Jagdale', 'Delhi', 44,92000,5000,'HR');
+
+
+
+drop table employees1;
+drop table employees2;
+
+delete from departments where d_code='WD';
+
+select * from employees3
+
+/*keep wd department again in table to test for other queries*/
+insert into departments values ('WD', 'Web Development', 500000, 'Developing Web applications with different technologies');
+
+
+
+insert into employees5 values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
+insert into employees5 values(121,'Kamal' ,'Chopra', null, 40,70000,null,'HR');
+insert into employees5 values(112,'Rupa' ,'Wagh', 'Pune', 56,75000,5000,'WD');
+insert into employees5 values(131,'karuna' ,'Trivedi', 'Solapur', 46,65000,3000,'LD');
+insert into employees5 values(115,'rupali' ,'Patil', 'pune', 45,75000,null,'SM');
+insert into employees5 values(114,'Kaival' ,'triveni', 'Delhi', 40,60000,2000,'SM');
+insert into employees5 values(101,'Kishor' ,'Pawar', 'Solapur', 44,65000,2000,'HR');
+insert into employees5 values(155,'Yash' ,'Chopra', 'Delhi', 40,73000,null,'LD');
+insert into employees5 values(255,'Pavan' ,'Kumar', 'Mumbai', 40,70000,4000,'LD');
+insert into employees5 values(102,'Sonu' ,'Chaturvedi', 'Kolkata', 46,80000,5000,'WD');
+insert into employees5 values(109,'Amar' ,'Jadhav', 'PUNE', 43,95000,4000,'WD');
+insert into employees5 values(110,'Amit' ,'Jagdale', 'Delhi', 44,92000,5000,'HR');
+
 
 
