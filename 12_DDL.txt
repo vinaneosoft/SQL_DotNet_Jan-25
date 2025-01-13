@@ -71,3 +71,46 @@ insert into trainers values(555,'Megha', '2-Jan-2023', 5); /*no check constraint
 /*we define constraints in create table query
 constraints applied / checked while DML operations
 */
+
+CREATE TABLE emp (
+empno NUMBER (4) PRIMARY KEY,
+ename VARCHAR2 (10),
+sal NUMBER(7,2) CHECK ( sal < 6000) DISABLE )
+
+2 ways to enable, disabled constraints
+1. column alteration
+2. constraint key : alteration
+
+CREATE TABLE trainer1 (
+empno NUMBER (4),
+ename VARCHAR2 (10) not null,
+sal NUMBER(7,2), constraint trainer_pk primary key (empno) ); /* custom constrain key */
+
+insert into trainer1 values(11, 'hari', 67000);
+insert into trainer1 values(11, 'hari', 67000);
+
+CREATE TABLE trainer2 (
+empno NUMBER (4),
+ename VARCHAR2 (10) not null,
+sal NUMBER(7,2), primary key (empno) ) ;/* internal contraint key */
+
+insert into trainer2 values(11, 'hari', 67000);
+insert into trainer2 values(11, 'hari', 67000);
+
+/*composit key*/
+/* not null : column level, default : column level*/
+create table nursarykids(
+    rollNumber number(2),
+    division varchar(3) default 'F',
+    constraint nk_pk_ck primary key (rollNumber,division),
+    constraint chk_role check (rollNumber>=1)
+);
+
+insert into nursarykids values(1, 'A'); 
+insert into nursarykids values(1, 'B');  
+insert into nursarykids values(2, 'B');  
+insert into nursarykids values(1, 'A');  /*error*/
+insert into nursarykids values(1, null);  /*error*/
+insert into nursarykids values(null, 'A');  /*error*/
+
+
