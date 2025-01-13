@@ -114,3 +114,32 @@ insert into nursarykids values(1, null);  /*error*/
 insert into nursarykids values(null, 'A');  /*error*/
 
 
+*parent table, primary table*/
+create table departments(d_code varchar(10) primary key, d_name varchar(100),
+d_budget number(20), d_role varchar(100));
+
+/*child table, secondary table*/
+/*column level foreign key constraint*/
+create table employees1 (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), 
+commission number(7), 
+dept_code varchar(10) references departments(d_code)
+);  
+
+/*table level foreign key constraint*/
+create table employees2 (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), 
+commission number(7), 
+dept_code varchar(10),
+constraint fk_dc foreign key (dept_code) references departments(d_code)
+);  
+
+
+
+
