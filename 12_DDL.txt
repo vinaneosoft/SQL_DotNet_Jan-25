@@ -279,3 +279,19 @@ select * from employees4
 
 
 
+
+insert into emp values(1, 'Kunal', 2000);
+insert into emp values(2, 'Kunal', 3000);
+insert into emp values(3, 'Rohit', 5000);
+insert into emp values(4, 'Mitali', 7000);
+and try to insert this value       
+insert into emp values(5, 'Mitali Mahajan', 8000);
+and check error
+
+
+ALTER TABLE emp
+MODIFY ( ename  VARCHAR2(50));
+
+insert into emp values(5, 'Mita Mahajan', 8000);
+
+
