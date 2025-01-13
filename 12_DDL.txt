@@ -294,4 +294,21 @@ MODIFY ( ename  VARCHAR2(50));
 
 insert into emp values(5, 'Mita Mahajan', 8000);
 
+ALTER TABLE emp
+ADD ( age number (2) )
+
+ALTER TABLE emp
+ADD ( age number (2)  default 18)
+
+
+ALTER TABLE emp
+ADD ( age number (2)  not null) /*error*/
+
+ALTER TABLE emp
+ADD ( age number (2)  default 18 not null)
+
+to add more than one column 
+
+ALTER TABLE emp
+add( city varchar(50), experience number(2))
 
