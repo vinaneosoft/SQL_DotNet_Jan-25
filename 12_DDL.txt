@@ -385,3 +385,31 @@ alter table emp add d_code varchar(3); /*now d_code is existing column*/
 alter table emp
 modify d_code references departments(d_code); /*column definition change*/
 
+/*adding foreign key constraint on existing column*/
+alter table emp add d_id varchar(3); /*now d_id is existing column*/
+
+alter table emp
+add constraint fk_did foreign key(d_id) references departments(d_code);  /*adding new constraint on column*/
+
+disable fk constraint from secondary table
+primary table value change
+secondary table value change
+enable  fk constraint on  secondary table
+
+Q. altering the column definition / constraints is necessary in few situations
+
+update departments set d_code='L&D' where d_code='LD'; /*integrity constraint (SQL_KDYMVOJOUEJICBFKUVIUGVPNH.SYS_C00180215287) violated - child record found*/
+
+alter table employees 
+    DISABLE constraint SYS_C00180215287
+update departments set d_code='L&D' where d_code='LD'; 
+update employees set dept_code='L&D' where dept_code='LD';
+/* update all the secondary tables where d_code dependency is there */
+alter table employees 
+    enable constraint SYS_C00180215287
+
+
+
+
+
+
