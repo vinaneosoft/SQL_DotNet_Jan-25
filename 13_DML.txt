@@ -1,0 +1,47 @@
+Q. All possible insert commands
+insert into departments values('JS', 'Javascript') ; /*not enough values, table col seq */ 
+insert into departments(d_code, d_name) values('JS', 'Javascript') ; /*own seq*/
+insert into departments values('DN', 'DotNet', 8900000, 'development in c# and dotnet') ;
+insert into departments(d_budget,d_name, d_code) values(5600000, 'Java', 'JV') ; 
+
+
+
+create table trainers (trid number(4) primary key, trname varchar(50));
+insert into trainers values(1, 'Pramond');
+insert into trainers values(2, 'Daud');
+select * from trainers;
+
+create table DotNettrainers (trid number(4) primary key, trname varchar(50), trexp number(2));
+insert into DotNettrainers values(3, 'Priya', 4);
+insert into DotNettrainers values(4, 'Anklesh', 6);
+
+select * from DotNettrainers;
+
+INSERT INTO trainers ( trid,trname)
+SELECT trid,trname
+FROM DotNettrainers;
+
+
+/*error : not enough values*/
+INSERT INTO DotNettrainers 
+SELECT *
+FROM trainers
+where trid in (1,2);
+/*  * : 2 cols  trid, trname    , 3 cols*/
+
+
+INSERT INTO DotNettrainers (trid, trname)
+SELECT *
+FROM trainers
+where trid in (1,2);
+/*  * : 2 cols  trid, trname    , 2 cols*/
+
+
+/*error : too many values*/
+delete from trainers where trid in(3,4);
+INSERT INTO trainers 
+SELECT *
+FROM DotNettrainers;
+/* * : 3 col, 2 col*/
+
+

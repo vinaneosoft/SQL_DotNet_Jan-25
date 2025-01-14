@@ -410,6 +410,12 @@ alter table employees
 
 
 
+Q. drop foreign key constraint
+ALTER TABLE employees
+DROP constraint SYS_C00180215287
 
+    Q. adding
+alter table employees
+add constraint fk_deptcode foreign key(dept_code) references departments(d_code);
 
 
