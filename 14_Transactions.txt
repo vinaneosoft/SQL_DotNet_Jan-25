@@ -26,3 +26,47 @@ insert into employees values(777,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, '
 delete from employees where dept_code='HR';
 rollback;
 /*end*/
+
+
+
+
+/*start*/
+update employees set city='mumbai' where employees_id=111; 
+rollback;
+/*end*/ 
+/*start*/
+insert into employees values(777,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, 'SM');
+delete from employees where dept_code='HR';
+rollback;
+/*end*/
+
+
+
+/*1*/
+update employees set city='mumbai' where employees_id=111; 
+rollback; /*end */
+/*2*/
+insert into employees values(777,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, 'SM');
+create table test(id number);  /*DDL end*/
+/*3*/
+delete from employees where dept_code='HR';
+rollback;/*end*/
+
+
+
+
+
+update employees set city='solapur' where employees_id=111;  
+insert into employees values(898,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, 'SM');
+commit;
+delete from employees where dept_code='HR';
+rollback;
+
+
+
+update employees set commission=1000 where employees_id=115;
+update employees set commission=commission*2 where employees_id=115;
+update employees set last_name='pawar' where employees_id=242;
+update employees set last_name=initcap(last_name) where employees_id=242;
+update employees set dept_code='HR' where dept_code is null;
+update employees set salary=salary+10000 where dept_code='HR';
