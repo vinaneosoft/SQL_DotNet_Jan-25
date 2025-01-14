@@ -99,3 +99,20 @@ set salary=case dept_code
 	else salary+1000
 	end
 
+
+  update employees
+	set salary=case 
+    when dept_code='LD' then salary+2000
+ 	when salary<60000  then salary+3000  
+	else salary+1000
+	end
+
+
+update last name as Poojari for employee 242
+update employees set last_name='Poojari' where employees_id=242;
+update commission as 1000 for WD deparment employees whose commission is null in their department
+update employees set commission=1000 where dept_code='WD' and  commission is null ;
+
+set city mumbai and last name kumar for employee 105
+Update employees set city='mumbai', last_name='Kumar' where employees_id=105;
+
