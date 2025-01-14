@@ -75,4 +75,13 @@ truncate table DotNettrainers; /*data delete, table structure remains in memory,
 desc DotNettrainers;
 select  * from DotNettrainers;
 
+Q. increment commission by 2000 for LD employees (DML)
+
+select * from employees where dept_code='LD';
+
+update employees set COMMISSION=COMMISSION+2000 where DEPT_CODE='LD';  /*null+2000=null*/
+
+update employees set COMMISSION=nvl(COMMISSION, 0)+2000 where DEPT_CODE='LD';  /*0+2000=2000*/
+
+
 

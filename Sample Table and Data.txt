@@ -13,7 +13,7 @@ create table employees (employees_id number(5) primary key,
 first_name varchar2(20), 
 last_name varchar2(20), 
 city varchar2(20), 
-age number(4), salary number(7), commission number(7), dept_code varchar(10) references departments(d_code));  
+age number(4), salary number(7), commission number(7), dept_code varchar(10) references departments(d_code) on delete set null);  
 
 
 insert into employees values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
@@ -46,7 +46,7 @@ insert into employees values(677,'Veena','Patil','Mumbai',66,90000,6000,'LD');
 insert into employees values(989,'Mohan','Rajput','Pune',44,50000,1000,null);
 insert into employees values(999,'Veena','Bhagat','Satara',40,49000,1000,null);
 
-update employees set commission=4000 where employees_id=121
+update employees set commission=4000 where employees_id=121;
 
 create table students(std_id number(8) primary key, ph_marks number(5), ch_marks number(5), maths_marks number(5), bio_marks number(5));
 
