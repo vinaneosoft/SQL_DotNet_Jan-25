@@ -1,0 +1,28 @@
+live oracle autocommit is false
+
+ Note : 1 or more statement in one transaction : select all of them and execute
+    
+delete from employees;    
+rollback;
+
+select * from employees;
+
+transaction works only for DML
+
+truncate table employees; 
+rollback;    //in this case data will not be rollbacked 
+
+/*start*/
+update employees set city='pune' where employees_id=111;  
+insert into employees values(777,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, 'SM');
+delete from employees where dept_code='HR';
+rollback;
+/*end*/
+/*start*/
+update employees set city='pune' where employees_id=111;
+/*end*/ commit
+/*start*/  
+insert into employees values(777,'Kalp', 'Chavan', 'satara', 34, 56000, 10000, 'SM');
+delete from employees where dept_code='HR';
+rollback;
+/*end*/
