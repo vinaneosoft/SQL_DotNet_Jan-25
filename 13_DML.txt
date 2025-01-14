@@ -64,6 +64,7 @@ WHEN MATCHED THEN UPDATE SET dtr.trname=tr.trname, dtr.trexp=tr.experience where
 WHEN NOT MATCHED THEN INSERT (dtr.trid,dtr.trname) 
 VALUES (tr.trid,tr.trname);
 
+delete from trainers;  /*data delete, table structure remains in memory,   DML, rollback*/
 
 desc trainers;
 select  * from trainers;
