@@ -45,3 +45,33 @@ FROM DotNettrainers;
 /* * : 3 col, 2 col*/
 
 
+
+
+create table trainers (trid number(4) primary key, trname varchar(50));
+insert into trainers values(1, 'Pramond');
+insert into trainers values(2, 'Daud' );
+select * from trainers;
+
+create table DotNettrainers (trid number(4) primary key, trname varchar(50), trexp number(2));
+insert into DotNettrainers values(3, 'Priya', 4);
+insert into DotNettrainers values(4, 'Anklesh', 6);
+insert into DotNettrainers values(2, 'Mohd', 8);
+
+
+MERGE INTO DotNettrainers dtr USING trainers tr
+ON (dtr.trid=tr.trid)
+WHEN MATCHED THEN UPDATE SET dtr.trname=tr.trname, dtr.trexp=tr.experience where dtr.trexp<tr.experience
+WHEN NOT MATCHED THEN INSERT (dtr.trid,dtr.trname) 
+VALUES (tr.trid,tr.trname);
+
+
+desc trainers;
+select  * from trainers;
+
+drop table trainers; /*delete table structure from db,  DDL, auto commit no rollback*/
+
+truncate table DotNettrainers; /*data delete, table structure remains in memory, DDL , auto commit , no rollback*/
+desc DotNettrainers;
+select  * from DotNettrainers;
+
+
