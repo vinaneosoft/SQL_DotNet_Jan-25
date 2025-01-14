@@ -63,14 +63,41 @@ delete from employees where dept_code='HR';
 rollback;
 
 
+Note :
+to go with savepoint start the transaction with BEGIN and end the transaction with END
 
+BEGIN
+   
+    UPDATE employees
+    SET commission = 1000
+    WHERE employees_id = 155;
 
-savepoint update_com_115;
-update employees set commission=1000 where employees_id=115;
-update employees set commission=commission*2 where employees_id=115;
-savepoint update_ln_242;
-update employees set last_name='pawar' where employees_id=242;
-update employees set last_name=initcap(last_name) where employees_id=242;
-savepoint update_sal_HR;
-update employees set dept_code='HR' where dept_code is null;
-update employees set salary=salary+10000 where dept_code='HR';
+    UPDATE employees
+    SET commission = 2 * commission
+    WHERE employees_id = 155;
+
+    SAVEPOINT update_ln_242;
+
+    UPDATE employees
+    SET last_name = 'Pawar'
+    WHERE employees_id = 242;
+
+    UPDATE employees
+    SET last_name = INITCAP(last_name)
+    WHERE employees_id = 242;
+
+    SAVEPOINT update_sal_HR;
+
+    UPDATE employees
+    SET dept_code = 'HR'
+    WHERE dept_code IS NULL;
+
+    UPDATE employees
+    SET salary = salary + 10000
+    WHERE dept_code = 'HR';
+
+    ROLLBACK TO update_sal_HR;
+
+    COMMIT;
+END;
+
