@@ -85,3 +85,17 @@ update employees set COMMISSION=nvl(COMMISSION, 0)+2000 where DEPT_CODE='LD';  /
 
 
 
+Q. Increment salary for LD : 2000
+    Increment salary for SM : 3000
+      Increment salary for WD : 4000
+     Increment salary for rest : 1000
+
+    
+update employees
+set salary=case dept_code
+    when 'LD' then salary+2000
+ 	when 'SM' then salary+3000
+	when 'WD' then salary+4000
+	else salary+1000
+	end
+
