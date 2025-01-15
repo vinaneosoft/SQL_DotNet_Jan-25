@@ -13,7 +13,7 @@ create table employees (employees_id number(5) primary key,
 first_name varchar2(20), 
 last_name varchar2(20), 
 city varchar2(20), 
-age number(4), salary number(7), commission number(7), dept_code varchar(10) references departments(d_code));  
+age number(4), salary number(7), commission number(7), dept_code varchar(10) references departments(d_code) on delete set null);  
 
 
 insert into employees values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
@@ -33,7 +33,7 @@ insert into employees values (333,'Kish', 'Kumar' ,'Pune',58,75000,null,'SM');
 insert into employees values (323,'Kishori' ,'Kumar' ,'Mumbai',59,92000,null,'SM');
 insert into employees values (132,'Manohar' ,'Trivedi' ,'Delhi',59,50000,2000,'LD');
 insert into employees values (122,'Ishwari' ,'Trivedi' ,'Delhi',59,50000,4000,'LD');
-
+insert into employees values(878,'Soham','Rajput','Mumbai',34,45000,1000,null);
 insert into employees(employees_id,first_name,age,salary,dept_code) values (242,'Poonam',59,80000,'WD');
 insert into employees values(224,'Anu','Chopra','Kolhapur',58,85000,3000,'SM');
 insert into employees values(225,'A','Kapoor','Kolhapur',59,87000,3000,'HR');
@@ -42,11 +42,11 @@ insert into employees(employees_id,first_name,age,salary,dept_code) values(105,'
 insert into employees values (344,'   Kishor',' Kishor  ','   Satara ',66,98000,4000,'HR');   
 insert into employees values(182,'Gauresh','Patil','Delhi',56,48000,null,'SM');
 insert into employees values(677,'Veena','Patil','Mumbai',66,90000,6000,'LD');
-insert into employees values(878,'Soham','Rajput','Mumbai',34,45000,1000,null);
+
 insert into employees values(989,'Mohan','Rajput','Pune',44,50000,1000,null);
 insert into employees values(999,'Veena','Bhagat','Satara',40,49000,1000,null);
 
-update employees set commission=4000 where employees_id=121
+update employees set commission=4000 where employees_id=121;
 
 create table students(std_id number(8) primary key, ph_marks number(5), ch_marks number(5), maths_marks number(5), bio_marks number(5));
 
