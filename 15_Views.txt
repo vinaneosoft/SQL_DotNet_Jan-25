@@ -1,0 +1,71 @@
+select EMPLOYEES_ID, SALARY,COMMISSION from  employees; : save VIEW : empsalaries : EMPLOYEES_ID, SALARY,COMMISSION 
+virtual table : act like table : named query : actual table result
+insert, update, delete : yes
+read only
+check 
+
+CREATE VIEW empsalaries AS
+SELECT
+    employees_id,SALARY,COMMISSION 
+FROM
+    employees;
+
+
+
+
+Q. create a view to store employees with their cities from SM department
+
+create view SMemployees as
+    select employees_id, city
+    from employees
+    where dept_code='SM';
+
+select * from SMemployees;
+
+
+Q. Show from which different cities SM employees coming
+
+select distinct lower(trim(city)) from SMemployees;
+
+Q. Store max salary of every deparment in view
+
+create view dept_maxsalary(max_salary, d_code) as    
+    select max(salary),dept_code 
+        from employees
+        group by dept_code;
+
+create view dept_maxsalary2 as    
+    select max(salary) max_sal ,dept_code  
+        from employees
+        group by dept_code;
+
+Q. Who is taking heighest salary in their department
+
+select employees_id, dept_code, salary
+from employees 
+where salary= (select max_salary
+    from  dept_maxsalary
+    where d_code = employees.dept_code
+);
+
+    dept_maxsalary /*view name*/
+max_salary, d_code  /*view columns*/
+
+
+create view emp_experience as
+SELECT 
+    employee_id,
+    dept_code,
+    round(MONTHS_BETWEEN(SYSDATE, join_date) / 12) AS exp_in_years,
+    round(MONTHS_BETWEEN(SYSDATE, join_date)) AS exp_in_months
+FROM 
+    neoemployees ;
+
+select * from emp_experience;
+
+desc EMP_EXPERIENCE;
+
+create view dept_maxexp as
+select max(EXP_IN_YEARS) max_exp_years,max(EXP_IN_MONTHS) max_exp_months, DEPT_CODE
+from EMP_EXPERIENCE
+group by DEPT_CODE;
