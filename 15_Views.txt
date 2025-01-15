@@ -209,5 +209,16 @@ Q. Manipulation on inline views
 delete from (select employees_id, salary from employees where dept_code='HR') where salary<=70000
 
 
+Note: below Query is using dept_maxexp real view, which intern using inline view
+
+select employee_id, dept_code,  round(sysdate-join_date) exp_in_days
+from neoemployees
+where  round(sysdate-join_date)=(
+    select max_exp_days from dept_maxexp
+    where neoemployees.dept_code=dept_maxexp.DEPT_CODE
+)
+order by dept_code;
+
+
 
 
