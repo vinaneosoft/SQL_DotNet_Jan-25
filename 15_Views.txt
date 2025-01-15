@@ -87,6 +87,13 @@ select max(EXP_IN_YEARS) max_exp_years,max(EXP_IN_MONTHS) max_exp_months, max(ex
 from EMP_EXPERIENCE  
 group by DEPT_CODE;
 
+
+insert into emp_experience( employee_id,dept_code) values(1003,'JS'); /*error : parent key not found*/
+insert into emp_experience( employee_id,dept_code) values(1003,'RST');
+
+drop view emp_experience;
+select * from dept_maxexp;  /*view "DEPT_MAXEXP" has errors*/
+
 Q. Who (id) is having highest experience in their department?
 
 employees : experience calcuate no use
@@ -129,6 +136,52 @@ create view depts as
 
 select * from emps e join depts e1 on e.dept_code =e1.d_code;
 
+delete from depts where d_code='SM';
+
+drop view depts;
+
+
+alter view depts
+compile;
+
+
+
+
+create or replace view depts as
+    select d_code,d_name
+    from departments with read only;
+
+The WITH READ ONLY clause prevents the underlying tables from changing through the view.
+insert into depts values('JS', 'Javascript'); /*cannot perform a DML operation on a read-only view */
+
+   
+
+
+    create or replace view HRemployees as
+    select employees_id, first_name, last_name,city, dept_code
+    from employees
+    where dept_code='HR' with check option;
+
+insert into HRemployees values(9999,'Suhas', 'Patil', 'satara', 'HR');
+insert into HRemployees values(3434,'Harish', 'Patil', 'satara', 'LD'); /*error*/
+
+
+
+    create or replace view HRemployees as
+    select *
+    from employees
+    where dept_code='HR' and salary>70000 with check option;
+
+insert into HRemployees values(1212,'mona', 'Patil', 'satara',56, 72000,10000,'LD'); /*error*/
+insert into HRemployees values(6767,'Suhas', 'Patil', 'satara',56, 71000,10000,'HR'); 
+
+
+    create or replace view HRemployees as
+    select *
+    from employees
+    where dept_code='HR' or salary>70000 with check option;
+
+insert into HRemployees values(1212,'mona', 'Patil', 'satara',56, 72000,10000,'LD'); 
 
 
 
