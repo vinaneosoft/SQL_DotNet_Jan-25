@@ -185,3 +185,29 @@ insert into HRemployees values(1212,'mona', 'Patil', 'satara',56, 72000,10000,'L
 
 
 
+create or replace view dept_maxexp as
+select max(EXP_IN_YEARS) max_exp_years,max(EXP_IN_MONTHS) max_exp_months, max(exp_in_days) max_exp_days, DEPT_CODE
+from (
+    SELECT 
+    employee_id,
+    dept_code,
+    round(MONTHS_BETWEEN(SYSDATE, join_date) / 12) AS exp_in_years,
+    round(MONTHS_BETWEEN(SYSDATE, join_date)) AS exp_in_months,
+    round(sysdate-join_date) as exp_in_days
+FROM 
+    neoemployees
+)
+group by DEPT_CODE;
+/* dept_maxexp : real view 
+from () : inline view*/
+
+
+
+
+
+Q. Manipulation on inline views
+delete from (select employees_id, salary from employees where dept_code='HR') where salary<=70000
+
+
+
+
