@@ -11,7 +11,11 @@ FROM
     employees;
 
 
+insert into empsalaries values(890, 78000,2300);
+insert into empsalaries(SALARY,COMMISSION ) values(78000,2300);
 
+/*if u r inserting new record via view, then null added for those column which are not present in view.
+if column contains not null constraint then error, if column contains default value them def value gets added */
 
 Q. create a view to store employees with their cities from SM department
 
@@ -21,6 +25,13 @@ create view SMemployees as
     where dept_code='SM';
 
 select * from SMemployees;
+
+update SMemployees set city='sangli';
+select * from SMemployees;
+select * from employees order by dept_code;
+
+insert into SMemployees(employees_id) values(1000);
+insert into SMemployees values(1002,'kolhapur');
 
 
 Q. Show from which different cities SM employees coming
@@ -38,6 +49,11 @@ create view dept_maxsalary2 as
     select max(salary) max_sal ,dept_code  
         from employees
         group by dept_code;
+
+insert into dept_maxsalary values(67000, 'JS') /* virtual column not allowed */
+insert into dept_maxsalary(max_salary) values(56000); /* virtual column not allowed */
+insert into dept_maxsalary(d_code) values( 'JS'); /* error */
+
 
 Q. Who is taking heighest salary in their department
 
@@ -115,9 +131,4 @@ select * from emps e join depts e1 on e.dept_code =e1.d_code;
 
 
 
-insert into empsalaries values(890, 78000,2300);
 
-insert into empsalaries(SALARY,COMMISSION ) values(78000,2300);
-
-/*if u r inserting new record via view, then null added for those column which are not present in view.
-qu
