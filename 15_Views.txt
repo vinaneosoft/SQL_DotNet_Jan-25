@@ -113,3 +113,11 @@ create view depts as
 
 select * from emps e join depts e1 on e.dept_code =e1.d_code;
 
+
+
+insert into empsalaries values(890, 78000,2300);
+
+insert into empsalaries(SALARY,COMMISSION ) values(78000,2300);
+
+/*if u r inserting new record via view, then null added for those column which are not present in view.
+qu
