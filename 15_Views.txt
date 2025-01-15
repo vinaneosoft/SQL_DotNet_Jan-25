@@ -52,20 +52,33 @@ where salary= (select max_salary
 max_salary, d_code  /*view columns*/
 
 
-create view emp_experience as
+create or replace view emp_experience as
 SELECT 
     employee_id,
     dept_code,
     round(MONTHS_BETWEEN(SYSDATE, join_date) / 12) AS exp_in_years,
-    round(MONTHS_BETWEEN(SYSDATE, join_date)) AS exp_in_months
+    round(MONTHS_BETWEEN(SYSDATE, join_date)) AS exp_in_months,
+    round(sysdate-join_date) as exp_in_days
 FROM 
     neoemployees ;
 
 select * from emp_experience;
 
 desc EMP_EXPERIENCE;
-
-create view dept_maxexp as
-select max(EXP_IN_YEARS) max_exp_years,max(EXP_IN_MONTHS) max_exp_months, DEPT_CODE
-from EMP_EXPERIENCE
+/*view dept_maxexp is dependant on view exp_experience*/
+create or replace view dept_maxexp as
+select max(EXP_IN_YEARS) max_exp_years,max(EXP_IN_MONTHS) max_exp_months, max(exp_in_days) max_exp_days, DEPT_CODE
+from EMP_EXPERIENCE  
 group by DEPT_CODE;
+
+Q. Who (id) is having highest experience in their department?
+
+employees : experience calcuate no use
+correlated sq:   emp_experience,   dept_maxexp both are views
+select employee_id, dept_code, exp_in_years
+from emp_experience 
+where  exp_in_days=(
+    select max_exp_days from dept_maxexp
+    where emp_experience.dept_code=dept_maxexp.DEPT_CODE
+)
+order by dept_code;
