@@ -82,3 +82,34 @@ where  exp_in_days=(
     where emp_experience.dept_code=dept_maxexp.DEPT_CODE
 )
 order by dept_code;
+
+
+Q. Store employee id, name and their dept id and name in view full join
+
+desc employees;
+desc departments;
+create view emps_dpts as
+select e.employees_id,e.first_name,e.last_name,d.d_code,d.d_name
+from employees e full join departments d
+on e.dept_code=d.d_code;
+
+
+
+Q. In which department, no any employee working?
+select D_CODE, D_NAME from emps_dpts  where employees_id is null;
+
+select d_code, d_name from departments
+where d_code not in (select distinct dept_code from employees where dept_code is not null)
+Note : in (4566 , 3436, null) : compare issue : no data found
+
+
+Q. employee_id, first_name, dept_code   : view
+create view emps as
+select employees_id,first_name,dept_code 
+from employees;
+Q. d_code, d_name, d_budget : view
+create view depts as
+    select d_code,d_name, d_budget from departments;
+
+select * from emps e join depts e1 on e.dept_code =e1.d_code;
+
