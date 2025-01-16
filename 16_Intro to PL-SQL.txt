@@ -167,5 +167,18 @@ END;
 
 
 
+DECLARE
+   l_emp_id employees.EMPLOYEES_ID%type :=121;
+   l_d_id    employees.dept_code%type;
+BEGIN
+    select dept_code
+    into l_d_id 
+    from employees
+    where employees_id=l_emp_id;
+	DBMS_OUTPUT.PUT_LINE('employee with id ' || l_emp_id || ' working in  ' || l_d_id ||' department' );
+END;
+
+
+
 
 
