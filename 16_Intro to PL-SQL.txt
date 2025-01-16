@@ -99,3 +99,73 @@ begin
 end;
 
 
+
+DECLARE
+   l_emp_id      employees.EMPLOYEES_ID%type;
+   l_details    varchar(25);
+BEGIN
+    select EMPLOYEES_ID, employees_id || employees_id
+    into  l_emp_id,l_details
+    from employees
+    where employees_id=121;
+	DBMS_OUTPUT.PUT_LINE(l_emp_id || ' has name ' || l_details );
+	DBMS_OUTPUT.PUT_LINE(l_emp_id );
+END;
+
+
+
+
+DECLARE
+   l_emp_id      employees.EMPLOYEES_ID%type;
+   l_emp_name   employees.first_name%type;
+BEGIN
+    select EMPLOYEES_ID, first_name || ' ' || last_name
+    into  l_emp_id,l_emp_name
+    from employees
+    where employees_id=121;
+	DBMS_OUTPUT.PUT_LINE(l_emp_id || ' has name ' ||  l_emp_name   );
+	
+END;
+
+
+DECLARE
+   l_emp_id      employees.EMPLOYEES_ID%type;
+   l_details     employees.dept_code%type;
+BEGIN
+    select EMPLOYEES_ID, (age || age) 
+    into  l_emp_id, l_details
+    from employees
+    where employees_id=121;
+	DBMS_OUTPUT.PUT_LINE(l_details *2 );
+	exception
+        when value_error then
+            DBMS_OUTPUT.PUT_LINE('invalid data');
+    		DBMS_OUTPUT.PUT_LINE('invalid data');
+	DBMS_OUTPUT.PUT_LINE(l_emp_id || ' has name ' || l_details );
+END;
+
+
+DECLARE
+   l_emp_id      employees.EMPLOYEES_ID%type;
+   l_details     employees.dept_code%type;
+BEGIN
+    select EMPLOYEES_ID, (age || dept_code) 
+    into  l_emp_id, l_details
+    from employees
+    where employees_id=121;
+	DBMS_OUTPUT.PUT_LINE(l_emp_id || ' has name ' || l_details );
+	DBMS_OUTPUT.PUT_LINE(l_details *2 );
+	DBMS_OUTPUT.PUT_LINE(67/0);
+	exception
+        when value_error then
+            DBMS_OUTPUT.PUT_LINE('invalid data');
+    	when zero_divide then 
+             DBMS_OUTPUT.PUT_LINE('invalid division');
+		when others then 
+             DBMS_OUTPUT.PUT_LINE('other exception');
+END;
+
+
+
+
+
