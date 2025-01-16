@@ -188,7 +188,14 @@ BEGIN
     from employees
     where employees_id=l_emp_id;
 	DBMS_OUTPUT.PUT_LINE('employee with id ' || l_emp_id || ' and name ' || l_fname || ' working in  ' || l_d_id ||' department' );
+exception
+	when no_data_found then
+		dbms_output.put_line('No Employee found!');
 END;
+
+
+
+
 
 
 BEGIN
