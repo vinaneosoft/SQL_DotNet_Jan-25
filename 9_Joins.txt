@@ -191,6 +191,7 @@ on  emp.manager_id=mgr.employee_id;
 
 CTE
 
+/*CTE are present in the query : virtual result sets : not saved in DB */
 WITH TEMP_EMPS AS (
     SELECT employee_id, first_name,manager_id
     FROM neoemployees

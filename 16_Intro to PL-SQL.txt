@@ -332,3 +332,25 @@ BEGIN
     n_counter := n_counter + 1;
   END LOOP;
 END;
+
+
+
+
+/*user defined exception 
+In PL/SQL, a pragma is a directive that instructs the compiler to perform a compilation option*/
+DECLARE
+    num1 number(10):=456;
+	num2 number(10):=534;
+	multiplication number(10);
+    number_too_large EXCEPTION;
+  	PRAGMA exception_init( number_too_large, -20000 );
+begin
+		multiplication:=num1*num2;
+		if multiplication>99999 then
+            raise number_too_large;
+		end if;
+		DBMS_OUTPUT.PUT_LINE( multiplication );
+		exception 
+            when number_too_large then
+            DBMS_OUTPUT.PUT_LINE('result greater than 5 digits');
+end;
