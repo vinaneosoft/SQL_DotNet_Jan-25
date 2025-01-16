@@ -223,3 +223,14 @@ BEGIN
     END LOOP;
 END;
 
+
+BEGIN
+  FOR i IN 1..5
+  LOOP
+   	FOR j IN 1..5
+     LOOP
+    	DBMS_OUTPUT.PUT_LINE( j );
+    END LOOP;
+  END LOOP;
+END;
+
