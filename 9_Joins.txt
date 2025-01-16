@@ -174,5 +174,29 @@ select employees_id, e.first_name, com_id, c.com_name
     
     
 
+Self join : using view : named query : 
 
-  
+
+create or replace view emps as 
+select employee_id, first_name, manager_id
+from  neoemployees;
+
+select * from emps;
+
+
+/*emps view is present in the database : virtual table : saved */
+select emp.*,mgr.first_name
+from  emps emp inner join neoemployees mgr
+on  emp.manager_id=mgr.employee_id;
+
+CTE
+
+WITH TEMP_EMPS AS (
+    SELECT employee_id, first_name,manager_id
+    FROM neoemployees
+)
+select temp.*,mgr.first_name
+from  TEMP_EMPS temp inner join neoemployees mgr
+on  temp.manager_id=mgr.employee_id;
+
+
