@@ -1,0 +1,18 @@
+Annonymous Block :
+    1. declaration (optional)
+    2. Execution section (mandatory)
+    3. exection section (optional)
+
+/*execution section*/
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Hello World!' );
+END;
+
+/*declaration section and execution section*/
+DECLARE
+    l_myname varchar(20):='Vina';
+BEGIN
+  	DBMS_OUTPUT.PUT_LINE( 'My name is ' || l_myname );
+	l_myname:='Veena';
+	DBMS_OUTPUT.PUT_LINE( 'My name is ' || l_myname );
+END;
