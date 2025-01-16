@@ -91,7 +91,11 @@ BEGIN
 END;
 
 
-
-
+/*sysdate : remote server system date*/
+declare 
+l_join_date date :=sysdate;
+begin
+ DBMS_OUTPUT.PUT_LINE('Current date and time in Kolkata: ' || TO_CHAR(FROM_TZ(CAST(l_join_date AS TIMESTAMP), 'UTC') AT TIME ZONE 'Asia/Kolkata', 'DD-MON-YYYY HH12:MI:SS a.m.'));
+end;
 
 
