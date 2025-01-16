@@ -195,6 +195,27 @@ END;
 
 
 
+DECLARE
+   l_emp_id employees.EMPLOYEES_ID%type :=121;
+   l_d_id    employees.dept_code%type;
+ 	l_fname    employees.first_name%type;
+
+ PROCEDURE finally IS
+    BEGIN
+        dbms_output.put_line('this block executes in any case');
+    END;
+BEGIN
+    select dept_code, first_name
+    into l_d_id , l_fname
+    from employees
+    where employees_id=l_emp_id;
+	DBMS_OUTPUT.PUT_LINE('employee with id ' || l_emp_id || ' and name ' || l_fname || ' working in  ' || l_d_id ||' department' );
+	finally;
+exception
+	when no_data_found then
+		dbms_output.put_line('No Employee found!');
+		finally;
+END;
 
 
 
@@ -240,4 +261,42 @@ BEGIN
     END LOOP;
   END LOOP;
 END;
+
+
+
+
+DECLARE
+    l_counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT( l_counter);
+        l_counter := l_counter + 1;
+        EXIT WHEN l_counter > 5; 
+    END LOOP;
+    DBMS_OUTPUT.NEW_LINE;
+END;
+
+
+begin
+for i in 1..5
+loop
+for j in 1..i
+loop
+dbms_output.put(j);
+end loop;
+dbms_output.put_line(' ');
+end loop;
+end;
+
+
+
+BEGIN
+    FOR counter IN REVERSE 1..5 
+    LOOP  
+        DBMS_OUTPUT.PUT(counter || ' ');
+    END LOOP;
+    DBMS_OUTPUT.NEW_LINE;
+END;
+
+
 
