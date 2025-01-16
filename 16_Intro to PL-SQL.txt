@@ -1,12 +1,15 @@
 Annonymous Block :
     1. declaration (optional)
     2. Execution section (mandatory)
-    3. exection section (optional)
+    3. exception section (optional)
 
 /*execution section*/
 BEGIN
   DBMS_OUTPUT.PUT_LINE('Hello World!' );
 END;
+
+
+
 
 /*declaration section and execution section*/
 DECLARE
@@ -36,6 +39,7 @@ BEGIN
 END;
 
 
+/*declaration section and execution section and exception section*/
 
 
 DECLARE
