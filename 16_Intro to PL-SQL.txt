@@ -345,12 +345,12 @@ DECLARE
     number_too_large EXCEPTION;
   	PRAGMA exception_init( number_too_large, -20000 );
 begin
-		multiplication:=num1*num2;
-		if multiplication>99999 then
+	multiplication:=num1*num2;
+	if multiplication>99999 then
             raise number_too_large;
 		end if;
 		DBMS_OUTPUT.PUT_LINE( multiplication );
-		exception 
+	 exception 
             when number_too_large then
             DBMS_OUTPUT.PUT_LINE('result greater than 5 digits');
 end;
