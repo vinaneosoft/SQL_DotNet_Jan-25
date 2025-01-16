@@ -198,3 +198,28 @@ BEGIN
   END LOOP;
 END;
 
+
+
+DECLARE
+    l_counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE( l_counter);
+        l_counter := l_counter + 2;
+        EXIT WHEN l_counter > 5; 
+    END LOOP;
+END;
+
+
+DECLARE
+    l_counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE( l_counter);
+        l_counter := l_counter + 2;
+		if l_counter > 5 then
+        	EXIT ; 
+		end if;
+    END LOOP;
+END;
+
