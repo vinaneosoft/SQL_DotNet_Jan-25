@@ -115,3 +115,49 @@ begin
 end;
 
 
+/*way 3*/
+
+select get_experience (121) " exp in days"
+from dual;
+
+
+select employees_id, get_experience (employees_id) "exp in days"
+from employees;
+
+
+CREATE OR REPLACE FUNCTION days_between (
+    l_date1 IN DATE,      
+    l_date2 IN DATE     
+) 
+RETURN NUMBER
+IS
+    days NUMBER;    
+BEGIN
+    days := (l_date1 - l_date2 ); 
+    RETURN days;
+END;
+
+
+
+CREATE OR REPLACE FUNCTION days_between (
+    l_date1 IN DATE,      
+    l_date2 IN DATE     
+) 
+RETURN NUMBER
+IS
+    days NUMBER;    
+BEGIN
+    days := (l_date1 - l_date2 ); 
+    RETURN days;
+END;
+
+select employee_id,days_between(sysdate, join_date) "experience in days"
+from neoemployees
+where dept_code='SM';
+
+select employee_id,round(days_between(sysdate, join_date)) "experience in days"
+from neoemployees
+where dept_code='SM';
+
+select days_between('23-Jan-25', '16-Jan-25')
+from dual;

@@ -56,3 +56,17 @@ insert into students values (224,85,88,78,91);
 insert into students values (225,70,75,86,70);
 insert into students values (226,72,80,84,73);
 insert into students values (227,98,95,77,85);
+
+
+
+CREATE OR REPLACE FUNCTION days_between (
+    l_date1 IN DATE,      
+    l_date2 IN DATE     
+) 
+RETURN NUMBER
+IS
+    days NUMBER;    
+BEGIN
+    days := (l_date1 - l_date2 ); 
+    RETURN days;
+END;

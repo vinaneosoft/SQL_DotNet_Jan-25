@@ -108,3 +108,16 @@ FROM neoemployees;
 Q. add 2 days in joining date, add 2 months in joining date, add 2 years in joining date
 SELECT join_date+2, add_months(join_date, 2), add_months(join_date, 24)
 FROM neoemployees;
+
+
+
+/*days_between is custom function*/
+Q. Who has highest experience in company : use days_between function
+    
+    SELECT employee_id, dept_code, to_char(join_date, 'DD-MM-YY HH12:MI:SS a.m.'),
+       days_between(SYSDATE, join_date) AS "months experience", months_between(SYSDATE, join_date) AS "months experience"
+FROM neoemployees
+WHERE days_between(SYSDATE, join_date) = (
+    SELECT MAX(days_between(SYSDATE, join_date)) 
+    FROM neoemployees
+);
