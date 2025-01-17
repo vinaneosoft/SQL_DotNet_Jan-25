@@ -62,4 +62,16 @@ end;
 
 
 
+create or replace procedure create_table is
+begin
+    execute immediate 'create table test(id number primary key)';
+end;
+
+
+
+execute create_table();
+
+procedures can be executed independently
+
+
 
