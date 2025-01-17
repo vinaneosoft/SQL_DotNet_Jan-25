@@ -141,7 +141,7 @@ END;
 
 CREATE OR REPLACE FUNCTION days_between (
     l_date1 IN DATE,      
-    l_date2 IN DATE     
+    l_date2 IN DATE default sysdate    
 ) 
 RETURN NUMBER
 IS
@@ -150,6 +150,10 @@ BEGIN
     days := (l_date1 - l_date2 ); 
     RETURN days;
 END;
+select days_between('12-Jan-25') from dual;
+select days_between('1-Jan-25','12-Jan-25') from dual;
+select days_between('12-Jan-25','1-Jan-25') from dual;
+
 
 select employee_id,days_between(sysdate, join_date) "experience in days"
 from neoemployees
