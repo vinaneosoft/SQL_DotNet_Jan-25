@@ -91,12 +91,27 @@ BEGIN
 END;
 
 
+/*way 1*/
 
 declare
     emp_exp number;
 begin
 	emp_exp:=get_experience (121);
 	dbms_output.put_line(emp_exp || ' days');
+	dbms_output.put_line(round(emp_exp/365));
+	if (round(emp_exp/365)) >=35 then
+        dbms_output.put_line('Clappp!!!!!');
+	end if;
+end;
+
+/*way 2*/
+
+declare
+    emp_exp number;
+begin
+	if (round(get_experience (121)/365)) >=35 then
+        dbms_output.put_line('Clappp!!!!!');
+	end if;
 end;
 
 
