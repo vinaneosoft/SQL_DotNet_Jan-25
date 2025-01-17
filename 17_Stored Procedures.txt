@@ -85,10 +85,18 @@ IS
 
 BEGIN
 
-   select sysdate-join_date into  exp_in_days from neoemployees where employee_id=emp_id;
+   select round(sysdate-join_date, 2) into  exp_in_days from neoemployees where employee_id=emp_id;
 
 	return exp_in_days;
 END;
 
+
+
+declare
+    emp_exp number;
+begin
+	emp_exp:=get_experience (121);
+	dbms_output.put_line(emp_exp || ' days');
+end;
 
 
