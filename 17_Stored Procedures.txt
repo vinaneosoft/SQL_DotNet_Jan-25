@@ -1,4 +1,4 @@
-PROCEDURE get_department_byid ( emp_id IN number,  dept_id OUT varchar)      
+create or replace PROCEDURE get_department_byid ( emp_id IN number,  dept_id OUT varchar)      
 IS 
 BEGIN 
   select dept_code into dept_id from employees where employees_id=emp_id; 
@@ -36,6 +36,29 @@ exception
     dbms_output.put_line(sqlerrm);
 END;
 
+
+
+Q. increment budget by passedvalue of department with id passed to procdure. Also return old budget as well as updated budget
+    dept code and increase amount pass to procedure
+    and get old budget and updated budget from procedure
+
+CREATE OR REPLACE PROCEDURE update_deptbudget(dept_id in varchar, amount in number, old_bdgt out number, new_bdgt out number) IS
+BEGIN
+    select d_budget into old_bdgt from departments where d_code = dept_id;
+	update departments set d_budget=d_budget+amount  where d_code = dept_id;
+    select d_budget into new_bdgt from departments where d_code = dept_id;
+END;
+
+
+declare
+    d_code varchar(20) := 'HR';
+    amount number := 300000;
+    o_bdgt departments.d_budget%type;
+    n_bdgt departments.d_budget%type;
+begin
+    update_deptbudget(d_code, amount, o_bdgt, n_bdgt);
+    dbms_output.put_line('Original : ' || o_bdgt || ' and Updated : ' || n_bdgt);
+end;
 
 
 
