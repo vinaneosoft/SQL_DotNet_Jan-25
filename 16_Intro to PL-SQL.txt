@@ -421,3 +421,20 @@ end;
 
 
 
+declare
+	emp_id number;	
+begin
+	select employees_id into emp_id from employees where dept_code='SM';
+	dbms_output.put_line('Employees from SM department: '||emp_id);
+exception
+	when too_many_rows then
+	dbms_output.put_line('Too many rows!');
+end;
+
+
+
+
+
+
+
+

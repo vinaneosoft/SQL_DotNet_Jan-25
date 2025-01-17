@@ -1,0 +1,42 @@
+PROCEDURE get_department_byid ( emp_id IN number,  dept_id OUT varchar)      
+IS 
+BEGIN 
+  select dept_code into dept_id from employees where employees_id=emp_id; 
+EXCEPTION 
+	when others then 
+    	 dbms_output.put_line( SQLERRM ); 
+END ;
+
+DECLARE
+dcode varchar(20);
+BEGIN
+get_department_byid(5555, dcode);
+dbms_output.put_line(dcode);
+
+END;
+
+
+
+create or replace PROCEDURE get_department_byid ( emp_id IN number,  dept_id OUT varchar)      
+IS 
+BEGIN 
+  select dept_code into dept_id from employees where employees_id=emp_id; 
+END ;
+
+
+
+DECLARE
+dcode varchar(20);
+BEGIN
+dbms_output.put_line('calling procedure to get department code '); 
+get_department_byid(121, dcode);
+dbms_output.put_line(dcode);
+exception 
+    when others then
+    dbms_output.put_line(sqlerrm);
+END;
+
+
+
+
+
