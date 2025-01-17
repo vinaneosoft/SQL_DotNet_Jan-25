@@ -75,3 +75,20 @@ procedures can be executed independently
 
 
 
+
+
+
+CREATE OR REPLACE FUNCTION get_experience (emp_id IN number)
+    RETURN number
+IS
+  exp_in_days number;
+
+BEGIN
+
+   select sysdate-join_date into  exp_in_days from neoemployees where employee_id=emp_id;
+
+	return exp_in_days;
+END;
+
+
+
