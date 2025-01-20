@@ -221,7 +221,14 @@ begin
 	dbms_output.put_line(res2);
 end;
 
-
+declare
+    ids SYS.ODCINUMBERLIST:=SYS.ODCINUMBERLIST(4444,5555,1111,2222);
+begin
+	FOR i IN 1 .. ids.COUNT 
+    LOOP
+    	insert into employees(employees_id, salary, commission) values(ids(i), 50000, 2000);
+  	END LOOP;
+end;
 
 
 
