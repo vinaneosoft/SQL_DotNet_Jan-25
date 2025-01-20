@@ -96,7 +96,7 @@ CREATE OR REPLACE TRIGGER emp_totalsalary
 AFTER  
 insert or update of salary, commission ON employees
 FOR EACH ROW
-declare empid number;
+
 BEGIN
     delete from salarydetails where employees_id=:new.employees_id;
     insert into salarydetails values(:new.employees_id, :new.salary+nvl(:new.commission,0));
@@ -116,5 +116,25 @@ stmt : 1, number of rows affected : 2 : row level trigger
     111 old record delete,  re insert
     2nd fire
     112 old record delete, re insert
+
+
+
+
+create table students(std_id number(8) primary key, 
+    ph_marks number(5) not null, ch_marks number(5)  not null, 
+    maths_marks number(5)  not null, bio_marks number(5)  not null, total_marks number);
+
+
+CREATE OR REPLACE TRIGGER trig_total_marks
+after  
+insert or update ON STUDENTS
+FOR EACH ROW
+declare
+    summ number;
+	sid number;
+BEGIN
+   select PH_MARKS+CH_MARKS+MATHS_MARKS+BIO_MARKS,STD_ID into summ,sid from STUDENTS where STD_ID=:new.std_id;
+   update STUDENTS set TOTAL_MARKS=summ where STD_ID=sid;
+END;
 
 
