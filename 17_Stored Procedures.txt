@@ -165,3 +165,63 @@ where dept_code='SM';
 
 select days_between('23-Jan-25', '16-Jan-25')
 from dual;
+
+
+
+
+declare
+    	TYPE numbers IS VARRAY(1000) OF number ;
+		array numbers:=numbers(56,68,34,67);
+begin
+		null;
+end;
+
+
+CREATE OR REPLACE FUNCTION rowsumm (p_numbers IN SYS.ODCINUMBERLIST)
+RETURN NUMBER
+IS
+  l_sum NUMBER := 0;
+BEGIN
+  FOR i IN 1 .. p_numbers.COUNT LOOP
+    l_sum := l_sum + p_numbers(i);
+  END LOOP;
+
+
+  RETURN l_sum;
+END;
+
+select rowsumm( SYS.ODCINUMBERLIST(78,56,45,34))
+from dual;
+
+CREATE OR REPLACE PACKAGE mathematics AS 
+TYPE numbers IS VARRAY(1000) OF number ; 
+function rowsum(array numbers) return number; 
+END mathematics;
+
+
+
+note : rowsumm(56,78,90,34) which data type holds n number of parameters.
+
+
+CREATE OR REPLACE FUNCTION multdivide (num1 IN  number, num2 IN number, mult OUT number ) return number
+IS
+    division number(5,1);
+BEGIN
+   	division:=num1/num2;
+	mult:=num1*num2;
+    RETURN division;
+END;
+
+declare
+	res number(5,1);
+	res2 number(10,2);
+begin
+	res:=divide(2.4,5.4, res2);
+	dbms_output.put_line(res);
+	dbms_output.put_line(res2);
+end;
+
+
+
+
+
