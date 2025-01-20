@@ -1,9 +1,7 @@
-create table total_salarycommission(dept_code varchar(4) references departments(d_code) on delete cascade, total_salary number not null, total_commission number not null);
+create table total_salarycommission(dept_code varchar(4) references departments(d_code) on delete cascade, total_salary number not null, total_commission number);
 
 insert into total_salarycommission  
 select dept_code, sum(salary),sum(commission) from employees group by dept_code;
-
-
 
 
 
@@ -48,14 +46,104 @@ insert into employees(employees_id, salary, commission, dept_code)
 select * from oldemployees; 
 /*statement is 1,  number if rows affected 3 ,  stmt level trigger : 1 time gets fired*/
 
-insert / update /delete on table's particular column
+ update of table's particular column 
 
-row level trigger,   same table update
+
+CREATE OR REPLACE TRIGGER departments_salary_commission
+AFTER 
+insert or UPDATE of salary, commission OR DELETE 
+ON employees
+begin
+    delete from TOTAL_SALARYCOMMISSION;
+    insert into total_salarycommission  
+    select dept_code, sum(salary),sum(commission) from employees group by dept_code;
+    dbms_output.put_line('trigger fired');
+	exception
+        when others then
+         dbms_output.put_line(sqlerrm);
+end;
+
+update employees set age=67 where employees_id=111; // trigger will not get fired
+update employees set salary=67000 where employees_id=111; // trigger fired
+
+
+
+begin
+    update employees set salary=salary+4000 where dept_code='WD';
+	update employees set salary=salary+3000 where dept_code='SM';
+	rollback;
+end;
+/*update : employee table update, trigger fire : TOTAL_SALARYCOMMISSION insert
+update : employee tabe update , trigger fire : TOTAL_SALARYCOMMISSION insert
+rollback*/
+
+row level trigger,   
+
+
+
+
+same table update
 
 instead of
 
 before
 
 on viewname
+
+
+
+
+CREATE OR REPLACE TRIGGER emp_totalsalary
+AFTER 
+insert or UPDATE of salary, commission OR DELETE 
+ON employees
+FOR EACH ROW
+DECLARE
+    v_salary NUMBER;
+    v_commission NUMBER;
+BEGIN
+    -- Retrieve the salary and commission of the newly inserted employee
+    SELECT salary, commission
+    INTO v_salary, v_commission
+    FROM employees
+    WHERE employees_id = :NEW.employees_id;
+    
+    -- Calculate total salary and commission and update the inserted record in salarydetails
+   /* UPDATE salarydetails
+    SET total = v_salary + v_commission
+    WHERE employees_id = :NEW.employees_id;*/
+	update salarydetails set TOTAL= v_salary+nvl(v_commission, 0) where EMPLOYEES_ID=:NEW.employees_id;
+END;
+
+
+create table salarydetails(
+    employees_id number references employees on delete cascade,
+    total number
+);
+
+CREATE OR REPLACE TRIGGER emp_totalsalary
+AFTER  
+insert or update of salary, commission ON employees
+FOR EACH ROW
+declare empid number;
+BEGIN
+    delete from salarydetails where employees_id=:new.employees_id;
+    insert into salarydetails values(:new.employees_id, :new.salary+nvl(:new.commission,0));
+    dbms_output.put_line('trigger 2 fired');
+END;
+
+insert into employees values(111,'Kishor' ,'Pawar', 'Mumbai', 56, 80000, 2000,'WD');
+insert into employees values(121,'Kamal' ,'Chopra', null, 40,70000,null,'HR');
+insert into employees values(112,'Rupa' ,'Wagh', 'Pune', 56,75000,5000,'WD');
+insert into employees values(131,'karuna' ,'Trivedi', 'Solapur', 46,65000,3000,'LD');
+insert into employees values(115,'rupali' ,'Patil', 'pune', 45,75000,null,'SM');
+
+update employees set salary=salary+5000 where dept_code='WD';
+
+stmt : 1, number of rows affected : 2
+    1st fire
+    111 old record delete,  re insert
+    2nd fire
+    112 old record delete, re insert
 
 
