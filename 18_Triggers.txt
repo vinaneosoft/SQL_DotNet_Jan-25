@@ -77,10 +77,6 @@ end;
 update : employee tabe update , trigger fire : TOTAL_SALARYCOMMISSION insert
 rollback*/
 
-row level trigger,   
-
-
-
 
 same table update
 
@@ -89,31 +85,6 @@ instead of
 before
 
 on viewname
-
-
-
-
-CREATE OR REPLACE TRIGGER emp_totalsalary
-AFTER 
-insert or UPDATE of salary, commission OR DELETE 
-ON employees
-FOR EACH ROW
-DECLARE
-    v_salary NUMBER;
-    v_commission NUMBER;
-BEGIN
-    -- Retrieve the salary and commission of the newly inserted employee
-    SELECT salary, commission
-    INTO v_salary, v_commission
-    FROM employees
-    WHERE employees_id = :NEW.employees_id;
-    
-    -- Calculate total salary and commission and update the inserted record in salarydetails
-   /* UPDATE salarydetails
-    SET total = v_salary + v_commission
-    WHERE employees_id = :NEW.employees_id;*/
-	update salarydetails set TOTAL= v_salary+nvl(v_commission, 0) where EMPLOYEES_ID=:NEW.employees_id;
-END;
 
 
 create table salarydetails(
@@ -140,7 +111,7 @@ insert into employees values(115,'rupali' ,'Patil', 'pune', 45,75000,null,'SM');
 
 update employees set salary=salary+5000 where dept_code='WD';
 
-stmt : 1, number of rows affected : 2
+stmt : 1, number of rows affected : 2 : row level trigger
     1st fire
     111 old record delete,  re insert
     2nd fire
