@@ -101,6 +101,8 @@ exception
         dbms_output.put_line(sqlerrm);
 end;
 
+below query is only working with cursor
+
 declare 
      cursor comm_cursor is select distinct commission from employees where dept_code='WD';
 	 wd_commission  employees.commission%type;
@@ -120,5 +122,40 @@ exception
 end;
 
 
+Q. Show employees having salary <=salary 10000 . Show message 'no single employee' if data no data found
+declare 
+     cursor emp_cursor is select * from employees where salary<=15000;
+     emprecord  employees%rowtype;
+		rcount number;
+begin
+    open emp_cursor;
+	loop
+    fetch emp_cursor into  emprecord;
+	rcount:=emp_cursor%rowcount;
+	if emp_cursor%notfound and emp_cursor%rowcount=0 then 	
+        dbms_output.put_line('no single employee found');
+		exit;
+	end if;
+	exit when emp_cursor%notfound;
+	dbms_output.put_line(rcount);
+    dbms_output.put_line(emprecord.first_name);
+	end loop;
+	exception 
+    when others then
+        dbms_output.put_line(sqlerrm);
+end;
+
+looping is not efficient way for above question
+
+declare 
+     emprecord  employees%rowtype;
+begin
+    for emprecord in (select * from employees where salary<=10000) loop
+        dbms_output.put_line(emprecord.first_name);
+	end loop;
+	exception 
+    when others then
+        dbms_output.put_line(sqlerrm);
+end;
 Use Cursor FOR Loop: When you want a simpler and cleaner way to iterate over a result set without the overhead of managing the cursor lifecycle manually. This is often sufficient for straightforward row processing.
 
