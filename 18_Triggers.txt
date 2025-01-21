@@ -78,13 +78,10 @@ update : employee tabe update , trigger fire : TOTAL_SALARYCOMMISSION insert
 rollback*/
 
 
-same table update
-
 instead of
 
-before
 
-on viewname
+
 
 
 create table salarydetails(
@@ -127,7 +124,7 @@ create table students(std_id number(8) primary key,
 
 CREATE OR REPLACE TRIGGER trig_total_marks
 after  
-insert or update ON STUDENTS
+insert ON STUDENTS
 FOR EACH ROW
 declare
     summ number;
@@ -136,5 +133,57 @@ BEGIN
    select PH_MARKS+CH_MARKS+MATHS_MARKS+BIO_MARKS,STD_ID into summ,sid from STUDENTS where STD_ID=:new.std_id;
    update STUDENTS set TOTAL_MARKS=summ where STD_ID=sid;
 END;
+ 
+Note : error :
+table SQL_HETTJZMZNXOGIIUXQKQTUNOQT.STUDENTS is mutating, trigger/function
 
+
+
+
+CREATE OR REPLACE TRIGGER departments_salary_commission
+before 
+insert or UPDATE of salary, commission OR DELETE 
+ON employees
+begin
+    delete from TOTAL_SALARYCOMMISSION;
+    insert into total_salarycommission  
+    select dept_code, sum(salary),sum(commission) from employees group by dept_code;
+    dbms_output.put_line('trigger fired');
+	exception
+        when others then
+         dbms_output.put_line(sqlerrm);
+end;
+
+
+
+before insert/ update/ delete of employees from employee table, trigger gets fired and it will
+calculate sum of salaries, sum of commissions department wise. means it will not consider new record
+in sum. it considers 'to be deleted' record in sum bcz trigger gets fired before deletion from table
+
+
+
+
+An INSTEAD OF trigger is a trigger that allows you to update data in tables via their view which cannot be modified directly through DML statements.
+
+1. simple updatable view : insert or update or delete on view name
+2. joined updatable view : instead of (insert / update /delete ) on view name
+
+create view join_WDemployees
+as 
+select employees_id, first_name, last_name, dept_code, d_name, d_budget
+from employees inner join departments on employees.dept_code=departments.d_code where dept_code='WD';
+
+select * from join_WDemployees;
+
+insert into join_WDemployees values(1212, 'Komal','Patil', 'JS', 'Javascript', 6700000); // error
+make a trigger to insert into underlying tables, instead of view 
+
+
+
+
+update on deparment
+disable fk constraint from secondary table
+primary table value change
+secondary table value change
+disable fk constraint from secondary table
 
