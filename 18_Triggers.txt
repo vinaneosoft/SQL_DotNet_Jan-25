@@ -78,12 +78,6 @@ update : employee tabe update , trigger fire : TOTAL_SALARYCOMMISSION insert
 rollback*/
 
 
-instead of
-
-
-
-
-
 create table salarydetails(
     employees_id number references employees on delete cascade,
     total number
@@ -179,11 +173,20 @@ insert into join_WDemployees values(1212, 'Komal','Patil', 'JS', 'Javascript', 6
 make a trigger to insert into underlying tables, instead of view 
 
 
-
-
 update on deparment
 disable fk constraint from secondary table
 primary table value change
 secondary table value change
-disable fk constraint from secondary table
+enable fk constraint from secondary table
+
+create or replace procedure changeDepartmentCode(oldcode  varchar, newcode  varchar) IS
+begin
+    execute immediate 'alter table employees disable constraint SYS_C00180641901';
+    update departments set d_code=newcode where d_code=oldcode;
+    update employees set dept_code=newcode where dept_code=oldcode;
+    execute immediate 'alter table employees enable constraint SYS_C00180641901';
+exception
+     when others then
+    	dbms_output.put_line(sqlerrm);
+end;
 

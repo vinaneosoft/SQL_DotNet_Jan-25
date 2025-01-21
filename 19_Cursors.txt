@@ -1,0 +1,68 @@
+Implicit cursror
+
+
+declare 
+    fname employees.first_name%type;
+begin
+	select first_name into fname from employees where employees_id='111';
+	dbms_output.put_line(fname);
+end;
+declare 
+    fname employees.first_name%type;
+	lname employees.last_name%type;
+begin
+	select first_name,last_name into fname,lname from employees where employees_id='111';
+	dbms_output.put_line(fname);
+	dbms_output.put_line(lname);
+end;
+
+declare 
+    details employees%rowtype;
+begin
+	select * into details from employees where employees_id='111';
+	dbms_output.put_line(details.first_name);
+	dbms_output.put_line(details.last_name);
+	dbms_output.put_line(details.city);
+end;
+
+
+Explicit cursor
+
+declare 
+    fname employees.first_name%type;
+	CURSOR firstnames IS select first_name from employees;
+	rcount number;
+	b boolean;
+begin
+    b:=firstnames%ISOPEN;
+    -- dbms_output.put_line(b);
+	OPEN firstnames;
+	-- dbms_output.put_line(firstnames%ISOPEN);
+	rcount:=firstnames%ROWCOUNT;
+	dbms_output.put_line(rcount);
+	LOOP
+    	FETCH  firstnames  INTO fname;
+		-- dbms_output.put_line(firstnames%FOUND);
+		-- dbms_output.put_line(firstnames%NOTFOUND);
+		 dbms_output.put_line(upper(fname));
+		
+		EXIT WHEN firstnames%NOTFOUND;
+	end loop;
+	rcount:=firstnames%ROWCOUNT;
+	dbms_output.put_line(rcount);
+	close firstnames;
+	exception 
+        when too_many_rows then
+        dbms_output.put_line(sqlerrm);  
+end;
+
+
+
+
+
+
+
+
+
+
+
