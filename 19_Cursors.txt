@@ -46,7 +46,7 @@ begin
 		-- dbms_output.put_line(firstnames%NOTFOUND);
 		 dbms_output.put_line(upper(fname));
 		
-		EXIT WHEN firstnames%NOTFOUND;
+	EXIT WHEN firstnames%NOTFOUND;
 	end loop;
 	rcount:=firstnames%ROWCOUNT;
 	dbms_output.put_line(rcount);
@@ -57,12 +57,51 @@ begin
 end;
 
 
+Explicit cursor : user control
+declare 
+    fname employees.first_name%type;
+	CURSOR firstnames IS select first_name from employees;
+begin
+	OPEN firstnames;
+	LOOP
+    	FETCH  firstnames  INTO fname;
+		dbms_output.put_line(upper(fname));
+		EXIT WHEN firstnames%NOTFOUND;
+	end loop;
+	close firstnames;
+	exception 
+        when others then
+        dbms_output.put_line(sqlerrm);  
+end;
+
+
+Explicit cursor : for loop
+declare 
+     ct employees.city%type;
+     cursor emp_cursor is
+        select first_name, last_name, city from employees;
+begin
+    for emp in emp_cursor loop
+        dbms_output.put_line(emp.first_name ||' '||emp.last_name || ' living in ' ||nvl(emp.city, 'no city'));
+    end loop;
+exception 
+    when others then
+        dbms_output.put_line(sqlerrm);
+end;
+
+declare 
+
+implicit cursor : for loop
+begin
+    for emp in  (select first_name, last_name, city from employees) loop
+        dbms_output.put_line(emp.first_name ||' '||emp.last_name || ' living in ' ||nvl(emp.city, 'no city'));
+    end loop;
+exception 
+    when others then
+        dbms_output.put_line(sqlerrm);
+end;
 
 
 
-
-
-
-
-
+Use Cursor FOR Loop: When you want a simpler and cleaner way to iterate over a result set without the overhead of managing the cursor lifecycle manually. This is often sufficient for straightforward row processing.
 
