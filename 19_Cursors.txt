@@ -101,6 +101,23 @@ exception
         dbms_output.put_line(sqlerrm);
 end;
 
+declare 
+     cursor comm_cursor is select distinct commission from employees where dept_code='WD';
+	 wd_commission  employees.commission%type;
+begin
+    open comm_cursor;
+    loop
+    FETCH  comm_cursor INTO wd_commission;
+	exit when comm_cursor%notfound;
+ 	if wd_commission is null then
+         dbms_output.put_line('no commission');
+	end if;
+    dbms_output.put_line(wd_commission);
+	end loop;
+exception 
+    when others then
+        dbms_output.put_line(sqlerrm);
+end;
 
 
 Use Cursor FOR Loop: When you want a simpler and cleaner way to iterate over a result set without the overhead of managing the cursor lifecycle manually. This is often sufficient for straightforward row processing.
