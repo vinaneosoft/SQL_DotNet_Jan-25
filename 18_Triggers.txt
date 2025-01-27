@@ -1,11 +1,7 @@
 create table total_salarycommission(dept_code varchar(4) references departments(d_code) on delete cascade, total_salary number not null, total_commission number);
 
-insert into total_salarycommission  
-select dept_code, sum(salary),sum(commission) from employees group by dept_code;
 
-
-
-   	CREATE OR REPLACE TRIGGER departments_salary_commission
+   CREATE OR REPLACE TRIGGER departments_salary_commission
     AFTER 
     insert or UPDATE OR DELETE 
     ON employees
@@ -189,4 +185,61 @@ exception
      when others then
     	dbms_output.put_line(sqlerrm);
 end;
+
+
+
+
+create table total_salarycommission(dept_code varchar(4) references departments(d_code) on delete cascade, 
+    total_salary number not null, total_commission number);
+CREATE OR REPLACE VIEW employee_dept_details
+AS SELECT
+   e.employees_id,
+   e.first_name,
+   e.salary,
+   e.commission,
+    e.dept_code
+FROM employees e
+
+WHERE dept_code='HR';
+
+
+Note : on views only instead of trigger will work
+ CREATE OR REPLACE TRIGGER HR_salary_commission
+     instead of INSERT or UPDATE or DELETE
+    ON employee_dept_details
+    begin
+     	delete from TOTAL_SALARYCOMMISSION;
+    	insert into total_salarycommission  
+        select dept_code, sum(salary),sum(commission) from  employees group by dept_code;
+	end;
+
+
+
+create or replace trigger trg_insert_vw_sales_employees
+instead of insert on vw_sales_employees
+for each row
+declare
+begin
+    -- Insert the new department using the department name passed in the view
+  begin
+        insert into departments (d_code, d_name, d_budget, d_role)
+        values (:new.d_code, :new.d_name, :new.d_budget, :new.d_role);
+    exception
+        when dup_val_on_index then
+            -- Department already exists, raise an error
+            raise_application_error(-20001, 'Department with ID ' || :new.d_code || ' already exists.');
+    end;
+    -- Insert the new employee (without checking if it exists)
+    begin
+        insert into employees (employees_id, first_name, last_name, city, age, salary, commission, dept_code)
+        values (:new.employees_id, :new.first_name, :new.last_name, :new.city, :new.age, :new.salary, :new.commission, :new.d_code);
+    exception
+        when dup_val_on_index then
+            -- Employee already exists, raise an error
+    
+            raise_application_error(-20002, 'Employee with ID ' || :new.employees_id || ' already exists.');
+    end;
+end;
+
+
 

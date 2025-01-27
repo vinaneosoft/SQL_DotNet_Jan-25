@@ -188,8 +188,7 @@ BEGIN
   RETURN l_sum;
 END;
 
-select rowsumm( SYS.ODCINUMBERLIST(78,56,45,34))
-from dual;
+select rowsumm( SYS.ODCINUMBERLIST(78,56,45,34))   from dual;
 
 CREATE OR REPLACE PACKAGE mathematics AS 
 TYPE numbers IS VARRAY(1000) OF number ; 

@@ -122,7 +122,7 @@ exception
 end;
 
 
-Q. Show employees having salary <=salary 10000 . Show message 'no single employee' if data no data found
+Q. Show employees having salary <=salary 10000 . Show message 'no single employee' if  no data found
 declare 
      cursor emp_cursor is select * from employees where salary<=15000;
      emprecord  employees%rowtype;

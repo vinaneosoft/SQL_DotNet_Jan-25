@@ -1,0 +1,74 @@
+CREATE INDEX emp_dept_index ON employees ( dept_code );
+
+ALTER INDEX emp_dept_index MONITORING USAGE;
+
+
+/*internal table  checked*/
+SELECT * FROM v$object_usage WHERE index_name = 'EMP_DEPT_INDEX';
+
+select * from employees  where dept_code='WD'; // searching
+
+/*internal table checked*/
+SELECT * FROM v$object_usage WHERE index_name = 'EMP_DEPT_INDEX';
+
+DROP INDEX emp_dept_index;
+
+
+
+CREATE CLUSTER cl_emp_dept ( d_code varchar(10) );
+
+CREATE INDEX  cl_idx
+ON CLUSTER cl_emp_dept ;
+
+ALTER INDEX cl_idx MONITORING USAGE;
+
+
+create table departments(d_code varchar(10) primary key, d_name varchar(100),
+d_budget number(20), d_role varchar(100))
+CLUSTER  cl_emp_dept(d_code);
+
+create table employees (employees_id number(5) primary key, 
+first_name varchar2(20), 
+last_name varchar2(20), 
+city varchar2(20), 
+age number(4), salary number(7), commission number(7), 
+d_code varchar(10) references departments(d_code) on delete set null)
+CLUSTER  cl_emp_dept(d_code);
+
+
+CREATE TABLE cl_employees
+CLUSTER cl_emp_dept (dept_code)
+AS SELECT * FROM employees;
+
+
+
+CREATE TABLE cl_departments
+CLUSTER cl_emp_dept (d_code)
+AS SELECT * FROM departments;
+
+select e.*, d.* from cl_employees e join cl_departments d on e.dept_code=d.d_code where e.dept_code='WD';
+
+
+SELECT * FROM v$object_usage;
+
+Note : prove cl_employees, cl_departments in the same cluster 
+
+Q. why cluster_index not being used
+A. Oracle's query optimizer may decide not to use the cluster index because it thinks a full table scan on EMPLOYEES and cluster access for DEPARTMENTS is more efficient in this case.
+The optimizer may have statistics or heuristics suggesting that scanning all the rows in EMPLOYEES first is faster than using the cluster index.
+ 
+select e.rowid, e. first_name, e.dept_code, d.rowid, d.d_name,d.d_budget
+from employees e join departments d on e. dept_code=d.d_code where e.dept_code='SM';
+
+
+
+Note : prove cl_employees, cl_departments in the same cluster 
+
+/*all rows from cl_employees for deparment SM, 
+and row in the cl_departments for dept SM reside on same exact block*/
+select e.rowid, e. first_name, e.dept_code, d.rowid, d.d_name,d.d_budget
+from cl_employees e join cl_departments d on e. dept_code=d.d_code where e.dept_code='SM';
+
+
+
+
