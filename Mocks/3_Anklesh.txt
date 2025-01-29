@@ -3,7 +3,7 @@ show elder employees >=60 : done
 how many employees from Mumbai? done
 count will count nulls? done
 
-employees having name ending with sri / shree/ shri / shree soundex, substr, like
+employees having name ending with sri / shree/ shri / shree soundex, substr, like : solved in meeting
 
 
 employees other than SM department use logical not : no answer given

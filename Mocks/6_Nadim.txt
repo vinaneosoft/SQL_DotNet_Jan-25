@@ -14,11 +14,11 @@ in (..., null) works ? correct ans given
 
 use of nvl : correct
 
-how many teenagers are there in every HR department?
+how many teenagers are there in every HR department? :  done
 
-if count is 0  then it should display 'no teenagers found' ? done
+if count is 0  then it should display 'no teenagers found' ? done : rest solved in meeting
 
-Display unique cities in length of 10 : 1st anwer is wrong, 2nd wrong
+Display unique cities in length of 10 : 1st answer is wrong, 2nd wrong
 
 Cities must not have spaces : done
 

@@ -4,7 +4,7 @@ show employees with their salary+commission greater than 80000 : done
 
 put above query in descending  order of sal+commission : done
 
-can we use alias in order by ? wrong answer given first
+can we use alias in order by ? wrong answer given first (checked in query.  alias  with "" does not work, but alias with as clause works in order by clause)
 
 
 how many employees in company have same (salary+commission) : done

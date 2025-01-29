@@ -1,8 +1,8 @@
 Create index on column city : dont know
 
-How to drop table from employees : wrong query
+How to drop table from employees : wrong query(table keyword was missing), then corrected.
 
-how to rollback dropped tables : wrong answer given
+how to rollback dropped tables : wrong answer given (we can not rollback ddl, he forgot)
 
 what type of command drop is : done
 can u rollback DDL ? wrong answer given
@@ -19,11 +19,11 @@ create a procedure which will give max salary of department which is passed to t
 
 call the procedure : wrong answer written then corrected
 
-truncate and delete diff : 
+truncate and delete diff : done 
 
 meeting : truncate statement level trigger 
 
-make a transaction which is deleting all departments and them rolling back :  mistakes in table name , then done correctly
+make a transaction which is deleting all departments and then rolling back :  mistakes in table name , then done correctly
 
 Why fk constraint error : correct answer
 

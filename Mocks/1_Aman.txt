@@ -1,15 +1,15 @@
-PL SQL difference
-Data types
-select * means?
+PL SQL difference yes
+Data types yes
+select * means? yes
 
-how to restrict the rows?
+how to restrict the rows? yes
 
-special operator like, between and
+special operator like, between and yes
 
 in : no answer given
 
 
-types of SQL 
+types of SQL  yes
 
 Select employees whose name sounding like sooraj : yes
 

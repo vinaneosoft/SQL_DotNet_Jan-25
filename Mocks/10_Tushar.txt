@@ -50,7 +50,7 @@ assume present_students : std_id
 
 not prepared much for set
 
-how many total students in college passedout+present : no answer
+how many total students in college passedout+present : no answer : trainer helped
 
 show employees from SM department : done
 
