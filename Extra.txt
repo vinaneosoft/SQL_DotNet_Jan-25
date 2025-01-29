@@ -61,4 +61,7 @@ how rowid are getting generated and assigned to each row of table
 
 
 DML : update command 
+
+
+Storage engine is used in Oracle
    

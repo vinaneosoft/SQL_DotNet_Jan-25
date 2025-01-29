@@ -59,3 +59,28 @@ Q. Diplay employees from LD department in ascending order of their age
 
 select * from employees where dept_code='LD' order by age;
 
+
+
+Q. can we use alias in order by?
+/*below will work*/
+select salary+nvl(commission, 0)  as total, count(employees_id) as cnt 
+from employees
+group by salary+nvl(commission, 0)
+order by total;
+
+/*below will not work*/
+select salary+nvl(commission, 0)  "total", count(employees_id) as cnt 
+from employees
+group by salary+nvl(commission, 0)
+order by total;
+
+/*below will work*/
+select first_name || last_name as fullname
+from employees
+order by fullname;
+
+/*below will not work*/
+select first_name || last_name  "fullname"
+from employees
+order by fullname;
+
