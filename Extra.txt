@@ -64,4 +64,83 @@ DML : update command
 
 
 Storage engine is used in Oracle
+
+
+
+find out employees whose name contains  shree / shri / sree/ sri
+
+create table test(name varchar(50));
+
+insert into test values('sudhashri');  
+insert into test values('dhanashree');  
+insert into test values('dhanashri');   
+insert into test values('madhusri');   
+insert into test values('meghasree');   
+insert into test values('sree');    
+insert into test values('shri');   
+insert into test values('shree');   
+insert into test values('vanasi');  
+insert into test values('namita');  
+insert into test values('shrishaa');  
+
+select * from test where soundex(SUBSTR(name, instr(name, 's', -1))) = soundex('shree')
+
+
+
+Q. Show number of teenagers employees from every department.
+    If no then show 'no teenagers found'
+
+select case COUNT(CASE WHEN AGE BETWEEN 13 AND 19 THEN 1 END)
+    when 0 then 'no teenagers found'
+    else to_char(count(employees_id)) end "count"
+    , dept_code
+    from employees
+    group by dept_code;
+
+
+
+
+
+Q. Show employees id from SM department
+
+select employees_id from employees where dept_code='SM';
+
+Q. Show employees id from LD department
+
+select employees_id from employees where dept_code='LD';
+
+Q. show all employee id from SM and LD department (join results for above queries)
+    
+select employees_id from employees where dept_code='SM'
+union
+select employees_id from employees where dept_code='LD';
+
+Q. how many employees there in SM and LD (use above union query)?
+    how to count multiple query results
+Solution : inline view
+select count (*) from 
+    (
+	select employees_id from employees where dept_code='SM'
+		union
+	select employees_id from employees where dept_code='LD'
+);
+
+Soln : subquery
+select count(*) from employees where employees_id in
+(select employees_id from employees where dept_code='SM'
+union
+select employees_id from employees where dept_code='LD')
+
+soln : CTE
+
+with sm_ld_emps as(select employees_id from employees
+where dept_code = 'SM'
+    union
+select employees_id from employees
+where dept_code = 'LD')
+select count(*) from sm_ld_emps;
+
+
+
+
    
