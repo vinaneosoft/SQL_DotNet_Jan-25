@@ -1,0 +1,45 @@
+show id name as full name and salary of employee : done
+
+Show above info from SM department : done
+
+Show above info from SM deparment whose salary > 70000 : done
+
+how many employees in SM department having salary > 70000 : done
+
+Which department does not have any employee working  : done
+
+why null should not be included in in set? answer not given. 
+
+how to replace nulls with other value ? done
+
+Who is elder employee in every department ? not done
+
+where clause and having clause ? done
+
+what is proper sequence of clauses ? done
+
+create table  having column with data type number 5,-1 : done
+
+what is number (5,-1) ? right and left side confusion
+
+45000.56 : gets inserted? right answer given, changed the answer
+
+43898.0 : gets inserted? right answer given
+
+Diff DDL, DML? right
+truncate, delete ? right
+update command : right
+
+show employees living in city pune : done
+show employees taking commission : done
+
+which employees from pune taking the commission (join the result of both the queries ) : done
+
+Show employees from pune not taking any commission (join the result of 2 queries ) : done
+
+pl sql function ? right
+
+exception error codes : right
+
+
+ 

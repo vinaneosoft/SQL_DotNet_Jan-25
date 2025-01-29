@@ -1,0 +1,51 @@
+Employee table skeleton : done
+
+employees from every city : done
+
+update city to uppercase , no whitespaces: done
+
+Show following format for employees where city is not mentioned 
+for employee hari (use name here) city not updated in table : query was wrong first time, then corrected
+
+
+Change name of the column : query written wrong
+then corrected
+
+city should not be null . add constraint  : done
+
+Why we need clusters? yes
+
+Why we need indexing ? yes
+
+What is view ? yes
+
+Difference between view and CTE ?  yes
+
+
+Create HRdeptemployees view: done
+
+Create SMdeptemployees view : done
+
+show employees from both views : done
+show cities from both views : done
+
+union union all :  done
+
+delete the employees having commission less than 2000 : done
+
+delete employee from every department who is recently joined: first answer wrong, then corrected
+
+
+Show recently joined employee in every department : done
+
+cursors in plsql : done
+
+notfound : yes
+rowcount : yes
+
+all projection to be saved in variable which data type is used in PLSQL?
+
+
+
+
+

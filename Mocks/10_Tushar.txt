@@ -1,0 +1,71 @@
+Few data types : correct
+char and varchar : correct
+
+few constraints : correct 
+
+default constraint on column : no answer given
+
+2 ways to put constraints while creating a  table : correct 
+
+fk constraint clauses : correct 
+
+
+
+product id pk
+name not null
+column level
+
+create table to save order :orderid, custid, productid, quantity
+	- very slow, help from trainer, but correct query
+
+insert query with different column order : mistake then corrected
+
+insert query without column names :  correct
+
+prove on delete set null : proved
+
+drop fk constraints :  done
+
+add fk constraints again with cascade clause : done
+
+prove on delete cascade : proved
+
+create virtual table for Mumbai employees : done
+
+replace view with check option : done
+
+replace the view and make it readonly : done
+
+CTE and views difference  : done
+cursors : correct
+
+cursor attributes : correct
+
+function and procedure : few differences told
+
+set operators : correct
+
+assume tables passedout_students : student_id
+assume present_students : std_id
+
+not prepared much for set
+
+how many total students in college passedout+present : no answer
+
+show employees from SM department : done
+
+show employees from HR department : done
+
+combine results of both queries : done
+
+show total employees from above combination : done 
+
+
+
+
+
+
+
+
+ 
+

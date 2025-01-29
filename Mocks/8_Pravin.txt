@@ -1,0 +1,57 @@
+show employees with their salary+commission : done
+
+show employees with their salary+commission greater than 80000 : done
+
+put above query in descending  order of sal+commission : done
+
+can we use alias in order by ? wrong answer given first
+
+
+how many employees in company have same (salary+commission) : done
+
+can we use alias in group by : correct answer
+
+show employees from company joined in year 2000 : done
+
+show employees from company joined in month Jan : done
+extract
+to_char  : correct
+
+How many employees joined in leap year? correct
+
+make single group of all leap years : correct
+
+how u make single group of all leap years : trainer helped
+
+set budget = sum of salary and commissions of all employees of that deparment : partial logic 
+
+how to delete particular value from column of table ? correct
+
+
+Show employee from HR taking salary more than or eq to 60000
+Show employee from HR taking commision more than or eq to 4000
+Show employees meeting both requirements :correct
+
+union
+union all
+intersect
+minus   : correct
+
+create table with pk constraint and default constraint :
+ mistakes in syntax
+
+insert query : mistakes, then corrected
+
+add new column age with check constraint : mistake, corrected
+
+
+
+
+
+
+
+
+
+
+
+

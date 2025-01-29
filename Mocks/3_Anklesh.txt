@@ -1,0 +1,43 @@
+show elder employees >=60 : done
+
+how many employees from Mumbai? done
+count will count nulls? done
+
+employees having name ending with sri / shree/ shri / shree soundex, substr, like
+
+
+employees other than SM department use logical not : no answer given
+
+
+Show me the name of department where no single employee (with join) working :first query wrong, then given right answer
+
+Show me the name of department where no single employee (with sub query) no answer given
+
+Show me experience of every employees in days : done
+
+if u want to combine results from 2 queries : done
+
+result of multiple queries to combine ? done
+
+range operator : all answer given
+
+where and having clause? done
+
+dual table ? done
+
+
+increment salaries of employees with case
+
+LD dept employees by 10000
+SM dept employees by 20000
+rest employees by 30000 : done
+
+Triggers in PL SQL ? not studied
+
+
+Out parameters in procedures ? done
+how to return values from function : done
+
+
+
+

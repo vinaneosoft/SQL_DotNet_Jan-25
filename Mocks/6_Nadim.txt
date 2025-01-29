@@ -1,0 +1,51 @@
+show employees with manager info : done
+
+what type of join used in above query  ? right answer given
+
+convert same query to self join : done
+
+show employees with managers and those employees who don't have managers : done 
+
+differ : left join , right join, join : correct answer
+
+Show employees who are not managing to any employee: done
+
+in (..., null) works ? correct ans given
+
+use of nvl : correct
+
+how many teenagers are there in every HR department?
+
+if count is 0  then it should display 'no teenagers found' ? done
+
+Display unique cities in length of 10 : 1st anwer is wrong, 2nd wrong
+
+Cities must not have spaces : done
+
+exclude null cities : done
+
+
+How many employees from every department not taking any commission : done but confused
+
+fk constraints : correct
+column level, table level : correct
+
+Show employees with their joining date who joined in December ? done
+do same query with extract function :  done
+
+
+Create a view of only HR employees
+but when u insert SM department employee via view then error
+but if u insert HR department employee via view then no error : done
+
+
+Who are the employees taking more salary than highest salary employee from SM : done
+
+if subquery returning more than one row then which operators/ keywords to use in main query for comparison ? done
+
+which keyword used to make 'and' comparison with all values of inner query result : no ans given
+
+
+
+
+

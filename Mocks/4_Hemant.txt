@@ -1,0 +1,32 @@
+Data types in oracle ? done
+Number data type ? done
+What is subquery ? done
+
+Show employees from sm department those earning same as employees from LD department ? wrong query
+
+Who is taking less salary among all employees ?  done
+
+Show employees having managers ? done
+
+Show manager names ? wrong query : Trainer helped
+
+Show employees who are not managers? trainer helped
+
+Create view from HR employees : done
+
+insert employee in SM department via above view
+
+Views with check option : wrong query
+
+ 
+how to add foreign key constraint in existing table ? done
+
+create one table with primary key, not null and default constraint at column level: done
+
+drop the table : done
+
+create one table with primary key, not null and default constraint at table level: wrong query
+
+Which constraint u can not define at table level? help by trainer
+
+

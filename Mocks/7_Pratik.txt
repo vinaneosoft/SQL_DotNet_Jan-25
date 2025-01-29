@@ -1,0 +1,55 @@
+Create index on column city : dont know
+
+How to drop table from employees : wrong query
+
+how to rollback dropped tables : wrong answer given
+
+what type of command drop is : done
+can u rollback DDL ? wrong answer given
+
+
+SM department max salary put in a variable and 
+display that variable : ; not given : corrected 2nd time
+
+type of variable should be type of salary column : 1st attempt wrong then corrected.
+
+he is not observing code for any errors
+
+create a procedure which will give max salary of department which is passed to that procedure : silly mistakes in variable declarations. 
+
+call the procedure : wrong answer written then corrected
+
+truncate and delete diff : 
+
+meeting : truncate statement level trigger 
+
+make a transaction which is deleting all departments and them rolling back :  mistakes in table name , then done correctly
+
+Why fk constraint error : correct answer
+
+alter fk constraints in employees table on dept_code column : correct
+
+how to drop constraint of table using constraint id? done
+
+Show employees who rejoined the company : assume
+oldemployees and newemployees tables : correct
+ 
+
+Show old employees who are not re joined in company :correct
+
+
+in every department, how many employees are there from different cities : correct
+
+
+
+
+
+
+
+
+
+
+
+
+
+

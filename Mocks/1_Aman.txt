@@ -1,0 +1,46 @@
+PL SQL difference
+Data types
+select * means?
+
+how to restrict the rows?
+
+special operator like, between and
+
+in : no answer given
+
+
+types of SQL 
+
+Select employees whose name sounding like sooraj : yes
+
+Show employees joined from 2000 to 2005 : yes
+
+Show department having highest number of employees : done (join)
+
+Show department having highest number of employees : not done (sub query) : not done
+
+newly joined employees from every department : done
+
+translate function : no
+
+equi join , inner join : done 
+natural join : no
+
+full join : yes
+
+employee working in singing and dancing table : yes
+
+
+transaction  clauses : yes
+
+
+create table nursarystudents having composit key roll number and division : done
+
+on delete set null : done
+
+procedure and triggers : few differences
+
+row level trigger and statement level triggers : need to work on wordings
+
+cursor attributes : need to learn more
+

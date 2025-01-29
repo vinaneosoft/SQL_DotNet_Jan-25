@@ -1,0 +1,44 @@
+show budget of all departments : done
+
+set budget to 0 if no employee working in that department : done
+
+show employees from Pune city. assume table contains many
+spellings of pune, poone, poune, puune, pooney : correct
+
+hot pot on table : replace all occurances of o to i : correct
+hot pot on table : replace all occurances of ot to ol : correct
+hot pot on table : replace all occurances of o to m
+and t to l : no  answer given 
+difference between replace and translate
+
+Show  your age by query : output must be
+I am [ur age] years old : correct : made changes
+
+Show how many employees are there in SM department
+normal
+logical not  : both correct
+
+if subquery returning more than one row then  which keywords/ operators u use with main query for comparison : correct
+
+in hr dept if no single employee with commission is null then increament salary for hr department  employee by 2000 : partial answer
+
+Show employees with lastname having 5 letters. trim the last name before comparison : correct answer , 2nd way not told
+
+how lpad works?  wrong answer
+
+Display all employees last name by making length 10
+if we need total length 3 then what happens to last names having length more than 3
+
+create index on column city : wrong syntax, syntax corrected with help of trainer.
+
+
+
+
+
+
+
+
+
+
+
+ 
